@@ -1,4 +1,4 @@
-Cuckoo2mist
+cuckoo2mist
 =====
 
 ## About
@@ -11,7 +11,7 @@ behavior monitoring tool or by converting existing behavior reports. The
 representation is not restricted to a particular monitoring tool and thus can
 also be used as a meta language to unify behavior reports of different sources.
 
-A detailed description and technical background on the concept of MIST is provided in  the following article: 
+A detailed description and technical background on the concept of MIST is provided in  the following article:
 
 - "A Malware Instruction Set for Behavior-Based Analysis." Philipp Trinius, Carsten Willems, Thorsten Holz, and Konrad Rieck Technical report TR-2009-07, University of Mannheim, 2009
 
@@ -37,38 +37,39 @@ If successful, import package to python
 
 ```
 >> import cuckoo2mist
->> from cuckoo2mist import class_mist
 ```
 
 ## Usage
 
-Specify folder containing Cuckoo JSON logs.
-
 ```
-$ python cuckoo2mist.py -i [Folder of Cuckoo logs]
+$ cuckoo2mist -c [directory of custom configuration files, omit to use default configuration] -i [directory of Cuckoo logs] -o [directory where MIST reports should be saved]
 ```
 
-Specify folder to save MIST file output
+or for direct execution from source directory without installation:
 
 ```
-$ python cuckoo2mist.py -o [Folder of Cuckoo logs]
+$ python run-cuckoo2mist.py -c [directory of custom configuration files, omit to use default configuration] -i [directory of Cuckoo logs] -o [directory where MIST reports should be saved]
 ```
-Open configuration directory
-
-```
-$ python cuckoo2mist.py -c [directory of conf file]
-```
-
-If all options are omitted, default values will be used.  
 
 ## Updates
 
 **Changes in this fork**
 
+In version 0.3:
+
 1. More API calls are added.
 2. More MIST levels added.
 3. Order of API calls are retained by using python ordered dictionary.
 4. ELF hash is changed to Murmurhash3, it is installed as dependency, the package is mmh3 2.5.1
+
+In version 0.4:
+
+1. Update on codebase to allow execution of application from console after installation.
+2. Able to open and read JSON reports that are compressed with gzip format.
+3. Able to log unmatched APIs together with respective categories.
+4. Log file is now to be saved in user directory.
+5. The matching of APIs' parameters is now case insensitive.
+6. Minor code mistakes corrected.
 
 **Upcoming changes**
 
