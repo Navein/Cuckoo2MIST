@@ -73,8 +73,9 @@ def generate_mist_reports(files, outputdir, apis, default_values, logger=log, ma
     threads = []
     try:
         for file in files:
-            (froot, fext) = os.path.splitext(file)
-            output_file = froot + ".mist"
+            fname_wext = os.path.basename(file)
+            (fname, fext) = os.path.splitext(fname_wext)
+            output_file = os.path.join(outputdir, fname + ".mist")
             while len(threads) >= max_threads:
                 time.sleep(5)
                 for t in threads:
