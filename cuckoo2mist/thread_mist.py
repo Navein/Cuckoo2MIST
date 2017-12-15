@@ -37,7 +37,7 @@ class MISTThread(Thread):
 		self.output_file = output_file
 		self.apis = apis
 		self.default_values = default_values
-		self.logger = logger
+		self.log = logger
 
 	def run(self):
 		mist = MIST(self.input_file, apis=self.apis,
@@ -45,4 +45,4 @@ class MISTThread(Thread):
 		if mist.convert():
 			mist.write(self.output_file)
 		if len(mist.errormsg) > 0:
-			self.logger.warning(mist.errormsg)
+			self.log.warning(mist.errormsg)
