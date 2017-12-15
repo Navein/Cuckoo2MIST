@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<types2mist>
+    <type_hex
+        bitvector="0"
+        default="00000000"
+    />
+    <type_integer
+        bitvector="0"
+        default="00000000"
+    />
+    <type_string
+        bitvector="0"
+        default="00000000"
+    />
+    <type_filepath
+        bitvector="0"
+        default="00000000"
+    />
+    <type_url
+        bitvector="0"
+        default="00000000"
+    />
+</types2mist>

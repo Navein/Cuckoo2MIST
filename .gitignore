@@ -1,0 +1,9 @@
+.*.swp
+*.pyc
+
+
+build/
+
+cuckoo2mist\.egg-info/
+
+dist/
