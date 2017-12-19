@@ -88,7 +88,7 @@ class MIST(object):
             #         f.write('%s;;%s\n' % (k, v))
 
         except Exception as e:
-            self.errormsg = e
+            self.errormsg = "%s" % e
             return False
         return True
 
