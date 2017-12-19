@@ -92,6 +92,9 @@ class MIST(object):
             return False
         return True
 
+    def remove_newline(self, value):
+        return re.sub("\n", "", value)
+
     def murmurhash3(self, key):
         h = 0
         try:
@@ -176,15 +179,13 @@ class MIST(object):
 
     def mist_filepath(self, instruction, value, level):
         (extension, path, filename, parameters) = self.split_filepath(value)
-        # print('"%s" "%s" "%s" "%s"'' % (extension, path, filename, parameters))
-        # File extension and path are appended to level 2 (instruction[1]).
-        # Filename and parameters are appended to level 3 (instruction[2]).
         instruction[level] = instruction[level] + " " + self.mist_str(extension) + " " + self.mist_str(path)
         instruction[level + 1] = instruction[level + 1] + " " + self.mist_str(filename) + " " + self.mist_str(parameters)
         return instruction
 
     def mist_url(self, instruction, value, level):
         # TODO Possibly convert URL to a more meaningful form.
+
         # Replace unique username in url(/path) with 'username'
         # value = value.lower()
         # pattern = '[a-z]\\:(?:\\\\|\\/)users(?:\\\\|\\/)([^\\\\\\/\\:\\?\\,\\|\\"\\*]+)'
@@ -247,6 +248,7 @@ class MIST(object):
                         break
 
                 if valtype == "type_hex":
+                    value = self.remove_newline(value)
                     x = value[2:10]
                     while len(x) < 8:
                         x = "0" + x
@@ -269,7 +271,8 @@ class MIST(object):
                     except:
                         self.nomatch[key] = [attrib_node.tag]
 
-            self.mist_report.write(" |".join(instruction) + "\n")
+            line = " |".join(instruction)
+            self.mist_report.write(line + "\n")
 
         return True
 
