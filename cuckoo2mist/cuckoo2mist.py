@@ -135,7 +135,7 @@ def main():
         log.warning("Output directory not valid")
         return
 
-    (apis, default_values) = read_configuration(confdir)
+    (apis, default_values) = read_configuration(conf_dir)
 
     generate_mist_reports(files,
                           outputdir=outputdir,
