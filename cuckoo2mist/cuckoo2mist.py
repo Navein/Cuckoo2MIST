@@ -138,7 +138,7 @@ def main():
     (apis, default_values) = read_configuration(conf_dir)
 
     generate_mist_reports(files,
-                          outputdir=outputdir,
+                          outputdir=output_dir,
                           apis=apis,
                           default_values=default_values,
                           logger=log)
