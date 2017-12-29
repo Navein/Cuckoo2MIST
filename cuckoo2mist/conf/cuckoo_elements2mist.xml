@@ -2,162 +2,86 @@
 
 <elements2mist>
 
-    <hooking cat="01">
+    <!--============= hooking category =============-->
 
-        <SetWindowsHookExW api="01">
-            <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="3"/>
-            <ModuleAddress type="type_hex" level="3"/>
-            <ThreadId type="type_integer" level="3"/>
-        </SetWindowsHookExW>
+    <hooking code="01">
 
-        <SetWindowsHookExA api="02">
-            <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="3"/>
-            <ModuleAddress type="type_hex" level="3"/>
-            <ThreadId type="type_integer" level="3"/>
-        </SetWindowsHookExA>
-
-        <UnhookWindowsHookEx api="03">
-            <HookHandle type="type_hex" level="4"/>
+        <UnhookWindowsHookEx code="01">
+            <HookHandle type="type_hex" level="3"/>
         </UnhookWindowsHookEx>
 
-        <SetUnhandledExceptionFilter api="04">
+        <SetUnhandledExceptionFilter code="02">
         </SetUnhandledExceptionFilter>
 
     </hooking>
 
-    <network cat="02">
+    <!--============= network category =============-->
 
-        <WSAStartup api="01">
-            <VersionRequested type="type_integer" level="2"/>
-        </WSAStartup>
+    <network code="02">
 
-        <WSASocketA api="02">
-            <protocol type="type_integer" level="2"/>
-            <af type="type_integer" level="2"/>
-            <type type="type_integer" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </WSASocketA>
+        <DnsQuery_A code="01">
+            <Type type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Options type="type_integer" level="2"/>
+        </DnsQuery_A>
 
-        <WSASocketW api="03">
-            <protocol type="type_integer" level="2"/>
-            <af type="type_integer" level="2"/>
-            <type type="type_integer" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </WSASocketW>
+        <DnsQuery_W code="02">
+            <Type type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Options type="type_integer" level="2"/>
+        </DnsQuery_W>
 
-        <WSAConnect api="04">
-            <port type="type_string" level="2"/>
-            <ip type="type_string" level="3"/>
-            <socket type="type_string" level="4"/>
-        </WSAConnect>
-
-        <WSASend api="05">
-            <buffer type="type_string" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </WSASend>
-
-        <WSARecv api="06">
-            <buffer type="type_hex" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </WSARecv>
-
-        <getaddrinfo api="07">
+        <getaddrinfo code="03">
             <ServiceName type="type_string" level="2"/>
-            <NodeName type="type_string" level="3"/>
+            <NodeName type="type_url" level="2"/>
         </getaddrinfo>
 
-        <socket api="08">
-            <protocol type="type_integer" level="2"/>
-            <af type="type_integer" level="2"/>
-            <type type="type_integer" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </socket>
+        <GetAddrInfoW code="04">
+            <ServiceName type="type_string" level="2"/>
+            <Nodename type="type_string" level="2"/>
+        </GetAddrInfoW>
 
-        <bind api="09">
-            <port type="type_integer" level="2"/>
-            <ip type="type_string" level="3"/>
-            <socket type="type_integer" level="4"/>
-        </bind>
+        <HttpOpenRequestA code="05">
+            <Verb type="type_string" level="2"/>
+            <Path type="type_url" level="2"/>
+            <Flags type="type_string" level="2"/>
+            <InternetHandle type="type_hex" level="3"/>
+        </HttpOpenRequestA>
 
-        <listen api="0a">
-            <socket type="type_integer" level="4"/>
-        </listen>
+        <HttpOpenRequestW code="06">
+            <Verb type="type_string" level="2"/>
+            <Path type="type_url" level="2"/>
+            <Flags type="type_string" level="2"/>
+            <InternetHandle type="type_hex" level="3"/>
+        </HttpOpenRequestW>
 
-        <accept api="0b">
-            <port_client type="type_integer" level="2"/>
-            <port_accept type="type_integer" level="2"/>
-            <ip_accept type="type_string" level="3"/>
-            <ip_client type="type_string" level="3"/>
-            <socket type="type_integer" level="4"/>
-            <ClientSocket type="type_integer" level="4"/>
-        </accept>
+        <HttpSendRequestA code="07">
+            <PostData type="type_hex" level="2"/>
+            <Headers type="type_string" level="2"/>
+            <RequestHandle type="type_hex" level="3"/>
+        </HttpSendRequestA>
 
-        <connect api="0c">
-            <port type="type_integer" level="2"/>
-            <ip type="type_string" level="3"/>
-            <socket type="type_integer" level="4"/>
-        </connect>
+        <HttpSendRequestW code="08">
+            <PostData type="type_hex" level="2"/>
+            <Headers type="type_string" level="2"/>
+            <RequestHandle type="type_hex" level="3"/>
+        </HttpSendRequestW>
 
-        <select api="0d">
-            <socket type="type_integer" level="4"/>
-        </select>
+        <HttpSendRequestExA code="09">
+            <PostData type="type_hex" level="2"/>
+            <Headers type="type_string" level="2"/>
+            <Flags type="type_integer" level="2"/>
+            <RequestHandle type="type_hex" level="3"/>
+        </HttpSendRequestExA>
 
-        <send api="0e">
-            <buffer type="type_hex" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </send>
+        <HttpSendRequestExW code="0a">
+            <PostData type="type_hex" level="2"/>
+            <Headers type="type_string" level="2"/>
+            <Flags type="type_integer" level="2"/>
+            <RequestHandle type="type_hex" level="3"/>
+        </HttpSendRequestExW>
 
-        <recv api="0f">
-            <buffer type="type_hex" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </recv>
-
-        <sendto api="10">
-            <port type="type_integer" level="2"/>
-            <buffer type="type_hex" level="2"/>
-            <ip type="type_string" level="3"/>
-            <socket type="type_integer" level="4"/>
-        </sendto>
-
-        <recvfrom api="11">
-            <port type="type_integer" level="2"/>
-            <buffer type="type_hex" level="2"/>
-            <ip type="type_string" level="3"/>
-            <socket type="type_integer" level="4"/>
-        </recvfrom>
-
-        <ioctlsocket api="12">
-            <command type="type_hex" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </ioctlsocket>
-
-        <setsockopt api="13">
-            <optname type="type_integer" level="2"/>
-            <optval type="type_hex" level="2"/>
-            <level type="type_integer" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </setsockopt>
-
-        <shutdown api="14">
-            <how type="type_integer" level="2"/>
-            <socket type="type_integer" level="4"/>
-        </shutdown>
-
-        <closesocket api="15">
-            <socket type="type_integer" level="4"/>
-        </closesocket>
-
-        <gethostbyname api="16">
-            <Name type="type_string" level="2"/>
-        </gethostbyname>
-
-        <gethostname api="17">
-            <HostName type="type_string" level="2"/>
-        </gethostname>
-
-        <InternetOpenA api="18">
+        <InternetOpenA code="0b">
             <AccessType type="type_integer" level="2"/>
             <Agent type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
@@ -165,7 +89,7 @@
             <ProxyBypass type="type_string" level="3"/>
         </InternetOpenA>
 
-        <InternetOpenW api="19">
+        <InternetOpenW code="0c">
             <AccessType type="type_integer" level="2"/>
             <Agent type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
@@ -173,307 +97,98 @@
             <ProxyBypass type="type_string" level="3"/>
         </InternetOpenW>
 
-        <InternetConnectA api="1a">
+        <InternetConnectA code="0d">
             <Service type="type_integer" level="2"/>
             <ServerPort type="type_integer" level="2"/>
             <Flags type="type_integer" level="2"/>
             <ServerName type="type_string" level="3"/>
-            <InternetHandle type="type_hex" level="4"/>
+            <InternetHandle type="type_hex" level="3"/>
         </InternetConnectA>
 
-        <InternetConnectW api="1b">
+        <InternetConnectW code="0e">
             <Service type="type_integer" level="2"/>
             <ServerPort type="type_integer" level="2"/>
+            <Flags type="type_integer" level="2"/>
             <ServerName type="type_string" level="3"/>
-            <InternetHandle type="type_hex" level="4"/>
-            <Flags type="type_integer" level="4"/>
+            <InternetHandle type="type_hex" level="3"/>
         </InternetConnectW>
 
-        <InternetOpenUrlA api="1c">
+        <InternetOpenUrlA code="0f">
             <URL type="type_url" level="2"/>
             <Headers type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
-            <ConnectionHandle type="type_hex" level="4"/>
+            <ConnectionHandle type="type_hex" level="3"/>
         </InternetOpenUrlA>
 
-        <InternetOpenUrlW api="1d">
+        <InternetOpenUrlW code="10">
             <URL type="type_url" level="2"/>
             <Headers type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
-            <ConnectionHandle type="type_hex" level="4"/>
+            <ConnectionHandle type="type_hex" level="3"/>
         </InternetOpenUrlW>
 
-        <InternetCrackUrlA api="1e">
-            <Url type="type_url" level="2"/>
-        </InternetCrackUrlA>
-
-        <InternetCrackUrlW api="1f">
-            <Url type="type_url" level="2"/>
-        </InternetCrackUrlW>
-
-        <InternetSetOptionA api="20">
-            <Option type="type_integer" level="2"/>
-            <Buffer type="type_hex" level="2"/>
-            <InternetHandle type="type_integer" level="4"/>
-        </InternetSetOptionA>
-
-        <InternetGetConnectedState api="21">
-        </InternetGetConnectedState>
-
-        <InternetReadFile api="22">
+        <InternetReadFile code="11">
             <Buffer type="type_string" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
+            <InternetHandle type="type_hex" level="3"/>
         </InternetReadFile>
 
-        <InternetWriteFile api="23">
-            <Buffer type="type_string" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </InternetWriteFile>
-
-        <InternetCloseHandle api="24">
-            <InternetHandle type="type_hex" level="4"/>
-        </InternetCloseHandle>
-
-        <InternetConfirmZoneCrossingA api="25">
-            <UrlPrev type="type_url" level="2"/>
-            <UrlNew type="type_url" level="2"/>
-        </InternetConfirmZoneCrossingA>
-
-        <InternetConfirmZoneCrossingW api="26">
-            <UrlPrev type="type_url" level="2"/>
-            <UrlNew type="type_url" level="2"/>
-        </InternetConfirmZoneCrossingW>
-
-        <GetAdaptersAddresses api="27">
-        </GetAdaptersAddresses>
-
-        <GetAdaptersInfo api="28">
-        </GetAdaptersInfo>
-
-        <GetAddrInfoW api="29">
-            <ServiceName type="type_string" level="2"/>
-            <Nodename type="type_string" level="3"/>
-        </GetAddrInfoW>
-
-        <ObtainUserAgentString api="2a">
-            <UserAgent type="type_string" level="2"/>
-        </ObtainUserAgentString>
-
-        <NetUserGetInfo api="2b">
-            <Level type="type_integer" level="2"/>
-            <ServerName type="type_string" level="3"/>
-        </NetUserGetInfo>
-
-        <NetGetJoinInformation api="2c">
-            <JoinStatus type="type_string" level="2"/>
-            <NetBIOSName type="type_string" level="2"/>
-            <Server type="type_string" level="3"/>
-        </NetGetJoinInformation>
-
-        <HttpOpenRequestA api="2d">
-            <Verb type="type_string" level="2"/>
-            <Path type="type_url" level="2"/>
-            <Flags type="type_string" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </HttpOpenRequestA>
-
-        <HttpOpenRequestW api="2e">
-            <Verb type="type_string" level="2"/>
-            <Path type="type_url" level="2"/>
-            <Flags type="type_string" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </HttpOpenRequestW>
-
-        <HttpSendRequestA api="2f">
-            <PostData type="type_hex" level="2"/>
-            <Headers type="type_string" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-        </HttpSendRequestA>
-
-        <HttpSendRequestW api="30">
-            <PostData type="type_hex" level="2"/>
-            <Headers type="type_string" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-        </HttpSendRequestW>
-
-        <HttpSendRequestExA api="31">
-            <PostData type="type_hex" level="2"/>
-            <Headers type="type_string" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-            <Flags type="type_integer" level="4"/>
-        </HttpSendRequestExA>
-
-        <HttpSendRequestExW api="32">
-            <PostData type="type_hex" level="2"/>
-            <Headers type="type_string" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-            <Flags type="type_integer" level="4"/>
-        </HttpSendRequestExW>
-
-        <HttpAddRequestHeadersA api="33">
-            <Headers type="type_string" level="2"/>
-            <Modifiers type="type_string" level="2"/>
-            <RequestHandle type="type_string" level="4"/>
-        </HttpAddRequestHeadersA>
-
-        <HttpAddRequestHeadersW api="34">
-            <Headers type="type_string" level="2"/>
-            <Modifiers type="type_string" level="2"/>
-            <RequestHandle type="type_string" level="4"/>
-        </HttpAddRequestHeadersW>
-
-        <HttpQueryInfoA api="35">
-            <Buffer type="type_string" level="2"/>
-            <InfoLevel type="type_hex" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-        </HttpQueryInfoA>
-
-        <HttpQueryInfoW api="36">
-            <Buffer type="type_string" level="2"/>
-            <InfoLevel type="type_hex" level="2"/>
-            <RequestHandle type="type_hex" level="4"/>
-        </HttpQueryInfoW>
-
-        <HttpEndRequestW api="37">
-            <RequestHandle type="type_hex" level="4"/>
-        </HttpEndRequestW>
-
-        <URLDownloadToFileW api="38">
+        <URLDownloadToFileW code="12">
             <URL type="type_url" level="2"/>
             <FileName type="type_filepath" level="2"/>
         </URLDownloadToFileW>
 
-        <URLDownloadToCacheFileW api="39">
+        <URLDownloadToCacheFileW code="13">
             <StackPivoted type="type_string" level="2"/>
             <URL type="type_url" level="2"/>
             <Filename type="type_filepath" level="2"/>
         </URLDownloadToCacheFileW>
 
-        <WinHttpOpen api="3a">
-            <AccessType type="type_integer" level="2"/>
-            <ProxyName type="type_string" level="2"/>
-            <Flags type="type_integer" level="2"/>
-            <ProxyBypass type="type_string" level="3"/>
-            <Agent type="type_string" level="4"/>
-        </WinHttpOpen>
+        <ObtainUserAgentString code="14">
+            <UserAgent type="type_string" level="2"/>
+        </ObtainUserAgentString>
 
-        <WinHttpConnect api="3b">
-            <ServerPort type="type_integer" level="2"/>
-            <ServerName type="type_string" level="3"/>
-            <SessionHandle type="type_hex" level="4"/>
-        </WinHttpConnect>
+        <WSAStartup code="15">
+            <VersionRequested type="type_integer" level="2"/>
+        </WSAStartup>
 
-        <WinHttpOpenRequest api="3c">
-            <Version type="type_string" level="2"/>
-            <ObjectName type="type_string" level="2"/>
-            <Verb type="type_string" level="2"/>
-            <Flags type="type_integer" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </WinHttpOpenRequest>
+        <WSAConnect code="16">
+            <port type="type_string" level="2"/>
+            <ip type="type_string" level="3"/>
+            <socket type="type_string" level="4"/>
+        </WSAConnect>
 
-        <WinHttpSendRequest api="3d">
-            <Headers type="type_string" level="2"/>
-            <Optional type="type_string" level="4"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </WinHttpSendRequest>
+        <WSASend code="17">
+            <buffer type="type_string" level="2"/>
+            <socket type="type_integer" level="4"/>
+        </WSASend>
 
-        <WinHttpSetOption api="3e">
-            <Option type="type_integer" level="2"/>
-            <Buffer type="type_hex" level="3"/>
-            <InternetHandle type="type_integer" level="4"/>
-        </WinHttpSetOption>
+        <WSARecv code="18">
+            <buffer type="type_hex" level="2"/>
+            <socket type="type_integer" level="4"/>
+        </WSARecv>
 
-        <WinHttpGetIEProxyConfigForCurrentUser api="3f">
-        </WinHttpGetIEProxyConfigForCurrentUser>
+        <connect code="19">
+            <port type="type_integer" level="2"/>
+            <ip type="type_string" level="3"/>
+            <socket type="type_integer" level="4"/>
+        </connect>
 
-        <WinHttpGetProxyForUrl api="40">
-            <Url type="type_url" level="2"/>
-            <SessionHandle type="type_hex" level="4"/>
-        </WinHttpGetProxyForUrl>
+        <send code="1a">
+            <buffer type="type_hex" level="2"/>
+            <socket type="type_integer" level="4"/>
+        </send>
 
-        <WinHttpQueryHeaders api="41">
-            <InternetHandle type="type_hex" level="4"/>
-        </WinHttpQueryHeaders>
-
-        <WinHttpReceiveResponse api="42">
-            <InternetHandle type="type_hex" level="4"/>
-        </WinHttpReceiveResponse>
-
-        <WinHttpSetTimeouts api="43">
-            <ResolveTimeout type="type_integer" level="2"/>
-            <ConnectTimeout type="type_integer" level="2"/>
-            <SendTimeout type="type_integer" level="2"/>
-            <ReceiveTimeout type="type_integer" level="2"/>
-            <InternetHandle type="type_hex" level="4"/>
-        </WinHttpSetTimeouts>
-
-        <WNetUseConnectionA api="44">
-            <AccessName type="type_string" level="2"/>
-            <LocalName type="type_string" level="2"/>
-            <RemoteName type="type_string" level="2"/>
-            <Flags type="type_integer" level="2"/>
-            <UserID type="type_string" level="3"/>
-            <Password type="type_string" level="3"/>
-        </WNetUseConnectionA>
-
-        <WNetUseConnectionW api="45">
-            <AccessName type="type_string" level="2"/>
-            <LocalName type="type_string" level="2"/>
-            <RemoteName type="type_string" level="2"/>
-            <Flags type="type_integer" level="2"/>
-            <UserID type="type_string" level="3"/>
-            <Password type="type_string" level="3"/>
-        </WNetUseConnectionW>
-
-        <NSPStartup api="46">
-        </NSPStartup>
-
-        <DnsQuery_A api="47">
-            <Type type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Options type="type_integer" level="2"/>
-        </DnsQuery_A>
-
-        <DnsQuery_W api="48">
-            <Type type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Options type="type_integer" level="2"/>
-        </DnsQuery_W>
-
-        <CoInternetSetFeatureEnabled api="49">
-            <Flags type="type_integer" level="2"/>
-            <Enable type="type_integer" level="2"/>
-            <FeatureEntry type="type_integer" level="2"/>
-        </CoInternetSetFeatureEnabled>
-
-        <CryptRetrieveObjectByUrlA api="4a">
-            <Url type="type_url" level="2"/>
-        </CryptRetrieveObjectByUrlA>
-
-        <CryptRetrieveObjectByUrlW api="4b">
-            <Url type="type_url" level="2"/>
-        </CryptRetrieveObjectByUrlW>
+        <closesocket code="1b">
+            <socket type="type_integer" level="4"/>
+        </closesocket>
 
     </network>
 
-    <windows cat="03">
+    <!--============= windows category =============-->
 
-        <FindWindowA api="01">
-            <ClassName type="type_string" level="2"/>
-            <WindowName type="type_string" level="2"/>
-        </FindWindowA>
+    <windows code="03">
 
-        <FindWindowW api="02">
-            <ClassName type="type_string" level="2"/>
-            <WindowName type="type_string" level="2"/>
-        </FindWindowW>
-
-        <FindWindowExA api="03">
-            <ClassName type="type_string" level="2"/>
-            <WindowName type="type_string" level="2"/>
-        </FindWindowExA>
-
-        <CreateWindowExA api="04">
+        <CreateWindowExA code="01">
             <ClassName type="type_string" level="2"/>
             <WindowName type="type_string" level="2"/>
             <Style type="type_hex" level="3"/>
@@ -483,7 +198,7 @@
             <width type="type_integer" level="4"/>
         </CreateWindowExA>
 
-        <CreateWindowExW api="05">
+        <CreateWindowExW code="02">
             <ClassName type="type_string" level="2"/>
             <WindowName type="type_string" level="2"/>
             <Style type="type_hex" level="3"/>
@@ -493,1157 +208,745 @@
             <Width type="type_integer" level="4"/>
         </CreateWindowExW>
 
-        <FindWindowExW api="06">
+        <FindWindowA code="03">
+            <ClassName type="type_string" level="2"/>
+            <WindowName type="type_string" level="2"/>
+        </FindWindowA>
+
+        <FindWindowW code="04">
+            <ClassName type="type_string" level="2"/>
+            <WindowName type="type_string" level="2"/>
+        </FindWindowW>
+
+        <FindWindowExA code="05">
+            <ClassName type="type_string" level="2"/>
+            <WindowName type="type_string" level="2"/>
+        </FindWindowExA>
+
+        <FindWindowExW code="06">
             <ClassName type="type_string" level="2"/>
             <WindowName type="type_string" level="2"/>
         </FindWindowExW>
 
-        <SendNotifyMessageA api="07">
-            <Message type="type_integer" level="2"/>
-            <WindowHandle type="type_hex" level="4"/>
-        </SendNotifyMessageA>
-
-        <SendNotifyMessageW api="08">
-            <Message type="type_integer" level="2"/>
-            <WindowHandle type="type_hex" level="4"/>
-        </SendNotifyMessageW>
-
-        <GetAsyncKeyState api="09">
-            <KeyCode type="type_integer" level="2"/>
-        </GetAsyncKeyState>
-
     </windows>
 
-    <threading cat="04">
+    <!--============= threading category =============-->
 
-        <CreateThread api="01">
+    <threading code="04">
+
+        <CreateThread code="01">
             <Parameter type="type_hex" level="2"/>
             <CreationFlags type="type_integer" level="2"/>
             <StartRoutine type="type_hex" level="3"/>
             <ThreadId type="type_integer" level="4"/>
         </CreateThread>
 
-        <CreateRemoteThread api="02">
+        <CreateRemoteThread code="02">
             <Parameter type="type_hex" level="2"/>
             <CreationFlags type="type_integer" level="2"/>
-            <StartRoutine type="type_hex" level="3"/>
-            <ProcessHandle type="type_hex" level="4"/>
+            <StartRoutine type="type_hex" level="2"/>
+            <ProcessHandle type="type_hex" level="3"/>
             <ThreadId type="type_integer" level="4"/>
         </CreateRemoteThread>
 
-        <OpenThread api="03">
-            <DesiredAccess type="type_integer" level="2"/>
-            <ThreadId type="type_integer" level="4"/>
-        </OpenThread>
-
-        <ExitThread api="04">
-            <ExitCode type="type_integer" level="2"/>
-        </ExitThread>
-
-        <NtCreateThreadEx api="05">
-            <CreateFlags type="type_integer" level="3"/>
-            <StartAddress type="type_hex" level="3"/>
-            <ProcessHandle type="type_hex" level="4"/>
-            <ThreadHandle type="type_hex" level="4"/>
+        <NtCreateThreadEx code="03">
+            <CreateFlags type="type_integer" level="2"/>
+            <StartAddress type="type_hex" level="2"/>
+            <ProcessHandle type="type_hex" level="3"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtCreateThreadEx>
 
-        <NtOpenThread api="06">
+        <RtlCreateUserThread code="04">
+            <CreateSuspended type="type_integer" level="2"/>
+            <StartAddress type="type_hex" level="3"/>
+            <StartParameter type="type_hex" level="3"/>
+            <ThreadIdentifier type="type_integer" level="3"/>
+            <ThreadHandle type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </RtlCreateUserThread>
+
+        <OpenThread code="05">
             <DesiredAccess type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
-            <ProcessId type="type_integer" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
+            <ThreadId type="type_integer" level="3"/>
+        </OpenThread>
+
+        <NtOpenThread code="06">
+            <DesiredAccess type="type_integer" level="2"/>
+            <ThreadHandle type="type_hex" level="3"/>
+            <ProcessId type="type_integer" level="3"/>
+            <ThreadId type="type_integer" level="3"/>
         </NtOpenThread>
 
-        <NtGetContextThread api="07">
-            <ThreadHandle type="type_hex" level="4"/>
+        <NtGetContextThread code="07">
+            <InstructionPointer type="type_hex" level="3"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtGetContextThread>
 
-        <NtSetContextThread api="08">
-            <ThreadHandle type="type_hex" level="4"/>
+        <NtSetContextThread code="08">
+            <InstructionPointer type="type_hex" level="3"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtSetContextThread>
 
-        <NtQueueApcThread api="09">
-            <ThreadHandle type="type_hex" level="4"/>
-            <ProcessId type="type_integer" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
+        <NtQueueApcThread code="09">
+            <ThreadHandle type="type_hex" level="3"/>
+            <ProcessId type="type_integer" level="3"/>
+            <ThreadId type="type_integer" level="3"/>
         </NtQueueApcThread>
 
-        <NtSuspendThread api="0a">
+        <NtSuspendThread code="0a">
             <SuspendCount type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtSuspendThread>
 
-        <NtResumeThread api="0b">
+        <NtResumeThread code="0b">
             <SuspendCount type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtResumeThread>
 
-        <NtTerminateThread api="0c">
+        <NtTerminateThread code="0c">
             <ExitStatus type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
+            <ThreadHandle type="type_hex" level="3"/>
         </NtTerminateThread>
-
-        <RtlCreateUserThread api="0d">
-            <CreateSuspended type="type_integer" level="3"/>
-            <StartAddress type="type_hex" level="4"/>
-            <StartParameter type="type_hex" level="4"/>
-            <ThreadIdentifier type="type_integer" level="4"/>
-            <ThreadHandle type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </RtlCreateUserThread>
 
     </threading>
 
-    <process cat="05">
+    <!--============= process category =============-->
 
-        <CreateProcessInternalW api="01">
+    <process code="05">
+
+        <NtCreateProcessEx code="01">
+            <FileName type="type_filepath" level="2"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </NtCreateProcessEx>
+
+        <CreateProcessInternalW code="02">
             <ApplicationName type="type_string" level="2"/>
             <CommandLine type="type_string" level="2"/>
             <CreationFlags type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
-            <ProcessId type="type_integer" level="4"/>
+            <ThreadHandle type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+            <ThreadId type="type_integer" level="3"/>
+            <ProcessId type="type_integer" level="3"/>
         </CreateProcessInternalW>
 
-        <OpenProcess api="02">
+        <OpenProcess code="03">
             <DesiredAccess type="type_integer" level="2"/>
-            <ProcessId type="type_integer" level="4"/>
+            <ProcessId type="type_integer" level="3"/>
         </OpenProcess>
 
-        <ReadProcessMemory api="03">
-            <Buffer type="type_hex" level="2"/>
-            <BaseAddress type="type_string" level="4"/>
-            <ProcessHandle type="type_string" level="4"/>
-        </ReadProcessMemory>
-
-        <WriteProcessMemory api="04">
-            <Buffer type="type_hex" level="2"/>
-            <StackPivoted type="type_string" level="2"/>
-            <BufferLength type="type_integer" level="4"/>
-            <BaseAddress type="type_string" level="4"/>
-            <ProcessHandle type="type_string" level="4"/>
-        </WriteProcessMemory>
-
-        <ShellExecuteExW api="05">
-            <Show type="type_integer" level="2"/>
-            <Parameters type="type_string" level="2"/>
-            <FilePath type="type_filepath" level="2"/>
-        </ShellExecuteExW>
-
-        <TerminateProcess api="06">
-            <ExitCode type="type_integer" level="2"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </TerminateProcess>
-
-        <ExitProcess api="07">
-            <ExitCode type="type_integer" level="2"/>
-        </ExitProcess>
-
-        <VirtualAllocEx api="08">
-            <Protection type="type_integer" level="2"/>
-            <AllocationType type="type_integer" level="2"/>
-            <Size type="type_integer" level="2"/>
-            <Address type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </VirtualAllocEx>
-
-        <VirtualProtectEx api="09">
-            <Protection type="type_integer" level="2"/>
-            <Size type="type_integer" level="3"/>
-            <Address type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </VirtualProtectEx>
-
-        <VirtualFreeEx api="0a">
-            <FreeType type="type_integer" level="2"/>
-            <Size type="type_integer" level="3"/>
-            <Address type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </VirtualFreeEx>
-
-        <NtCreateProcessEx api="0b">
-            <FileName type="type_filepath" level="2"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </NtCreateProcessEx>
-
-        <NtOpenProcess api="0c">
+        <NtOpenProcess code="04">
             <DesiredAccess type="type_integer" level="2"/>
             <ProcessHandle type="type_hex" level="3"/>
             <ProcessIdentifier type="type_integer" level="3"/>
         </NtOpenProcess>
 
-        <NtAllocateVirtualMemory api="0d">
+        <TerminateProcess code="05">
+            <ExitCode type="type_integer" level="2"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </TerminateProcess>
+
+        <NtTerminateProcess code="06">
+            <ExitCode type="type_integer" level="2"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </NtTerminateProcess>
+
+        <Process32FirstW code="07">
+            <ProcessName type="type_string" level="2"/>
+            <ProcessId type="type_integer" level="3"/>
+        </Process32FirstW>
+
+        <Process32NextW code="08">
+            <ProcessName type="type_string" level="2"/>
+            <ProcessId type="type_integer" level="3"/>
+        </Process32NextW>
+
+        <NtMapViewOfSection code="09">
+            <Win32Protect type="type_integer" level="2"/>
+            <StackPivoted type="type_string" level="2"/>
+            <ViewSize type="type_hex" level="2"/>
+            <BaseAddress type="type_hex" level="3"/>
+            <SectionHandle type="type_hex" level="3"/>
+            <SectionOffset type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </NtMapViewOfSection>
+
+        <NtUnmapViewOfSection code="0a">
+            <RegionSize type="type_integer" level="2"/>
+            <BaseAddress type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </NtUnmapViewOfSection>
+
+        <VirtualAllocEx code="0b">
+            <Protection type="type_integer" level="2"/>
+            <AllocationType type="type_integer" level="2"/>
+            <Size type="type_integer" level="2"/>
+            <Address type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </VirtualAllocEx>
+
+        <VirtualProtectEx code="0c">
+            <Protection type="type_integer" level="2"/>
+            <Size type="type_integer" level="2"/>
+            <Address type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </VirtualProtectEx>
+
+        <VirtualFreeEx code="0d">
+            <FreeType type="type_integer" level="2"/>
+            <Size type="type_integer" level="2"/>
+            <Address type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </VirtualFreeEx>
+
+        <NtAllocateVirtualMemory code="0e">
             <Protection type="type_integer" level="2"/>
             <StackPivoted type="type_string" level="2"/>
-            <RegionSize type="type_integer" level="3"/>
-            <BaseAddress type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
+            <RegionSize type="type_integer" level="2"/>
+            <BaseAddress type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
         </NtAllocateVirtualMemory>
 
-        <NtReadVirtualMemory api="0e">
-            <Buffer type="type_hex" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </NtReadVirtualMemory>
-
-        <NtWriteVirtualMemory api="0f">
+        <NtWriteVirtualMemory code="0f">
             <Buffer type="type_hex" level="2"/>
             <BaseAddress type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
         </NtWriteVirtualMemory>
 
-        <NtProtectVirtualMemory api="10">
+        <NtReadVirtualMemory code="10">
+            <Buffer type="type_hex" level="2"/>
+            <BaseAddress type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
+        </NtReadVirtualMemory>
+
+        <NtProtectVirtualMemory code="11">
             <OldAccessProtection type="type_integer" level="2"/>
             <NewAccessProtection type="type_integer" level="2"/>
             <MemoryType type="type_integer" level="2"/>
             <StackPivoted type="type_string" level="2"/>
-            <NumberOfBytesProtected type="type_integer" level="4"/>
-            <BaseAddress type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
+            <NumberOfBytesProtected type="type_integer" level="3"/>
+            <BaseAddress type="type_hex" level="3"/>
+            <ProcessHandle type="type_hex" level="3"/>
         </NtProtectVirtualMemory>
 
-        <NtFreeVirtualMemory api="11">
+        <NtFreeVirtualMemory code="12">
             <FreeType type="type_integer" level="2"/>
             <RegionSize type="type_integer" level="2"/>
             <BaseAddress type="type_hex" level="3"/>
-            <ProcessHandle type="type_hex" level="4"/>
+            <ProcessHandle type="type_hex" level="3"/>
         </NtFreeVirtualMemory>
 
-        <NtOpenSection api="12">
+        <NtCreateSection code="13">
             <DesiredAccess type="type_integer" level="2"/>
             <ObjectAttributes type="type_string" level="2"/>
-            <SectionHandle type="type_hex" level="4"/>
-        </NtOpenSection>
-
-        <NtCreateSection api="13">
-            <DesiredAccess type="type_integer" level="2"/>
-            <ObjectAttributes type="type_string" level="2"/>
-            <SectionHandle type="type_hex" level="4"/>
-            <FileHandle type="type_hex" level="4"/>
+            <SectionHandle type="type_hex" level="3"/>
+            <FileHandle type="type_hex" level="3"/>
         </NtCreateSection>
 
-        <NtMapViewOfSection api="14">
-            <Win32Protect type="type_integer" level="2"/>
-            <StackPivoted type="type_string" level="2"/>
-            <ViewSize type="type_hex" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
-            <SectionHandle type="type_hex" level="4"/>
-            <SectionOffset type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </NtMapViewOfSection>
+        <NtOpenSection code="14">
+            <DesiredAccess type="type_integer" level="2"/>
+            <ObjectAttributes type="type_string" level="2"/>
+            <SectionHandle type="type_hex" level="3"/>
+        </NtOpenSection>
 
-        <NtUnmapViewOfSection api="15">
-            <RegionSize type="type_integer" level="4"/>
-            <BaseAddress type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </NtUnmapViewOfSection>
-
-        <NtTerminateProcess api="16">
-            <ExitCode type="type_integer" level="2"/>
-            <ProcessHandle type="type_hex" level="4"/>
-        </NtTerminateProcess>
-
-        <CreateToolhelp32Snapshot api="17">
+        <CreateToolhelp32Snapshot code="15">
             <Flags type="type_integer" level="2"/>
             <ProcessId type="type_integer" level="3"/>
         </CreateToolhelp32Snapshot>
 
-        <Process32FirstW api="18">
-            <ProcessName type="type_string" level="2"/>
-            <ProcessId type="type_integer" level="4"/>
-        </Process32FirstW>
-
-        <Process32NextW api="19">
-            <ProcessName type="type_string" level="2"/>
-            <ProcessId type="type_integer" level="4"/>
-        </Process32NextW>
-
-        <CreateProcessWithTokenW api="1a">
-            <ApplicationName type="type_string" level="2"/>
-            <CommandLine type="type_string" level="2"/>
-            <LogonFlags type="type_integer" level="2"/>
-            <CreationFlags type="type_integer" level="2"/>
-            <ThreadHandle type="type_hex" level="4"/>
-            <ProcessHandle type="type_hex" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
-            <ProcessId type="type_integer" level="4"/>
-        </CreateProcessWithTokenW>
-
-        <WaitForDebugEvent api="1b">
-            <EventCode type="type_integer" level="2"/>
-            <ProcessId type="type_integer" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
-        </WaitForDebugEvent>
-
     </process>
 
-    <system cat="06">
+    <!--============= system category =============-->
 
-        <SetWindowsHookExA api="01">
-            <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="4"/>
-            <ModuleAddress type="type_hex" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
-        </SetWindowsHookExA>
+    <system code="06">
 
-        <SetWindowsHookExW api="02">
-            <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="4"/>
-            <ModuleAddress type="type_hex" level="4"/>
-            <ThreadId type="type_integer" level="4"/>
-        </SetWindowsHookExW>
-
-        <UnhookWindowsHookEx api="03">
-            <HookHandle type="type_hex" level="4"/>
-        </UnhookWindowsHookEx>
-
-        <LdrGetDllHandle api="04">
-            <FileName type="type_filepath" level="2"/>
-            <ModuleHandle type="type_hex" level="4"/>
-        </LdrGetDllHandle>
-
-        <LdrGetProcedureAddress api="05">
-            <ModuleName type="type_filepath" level="2"/>
-            <FunctionName type="type_string" level="2"/>
-            <Ordinal type="type_integer" level="2"/>
-            <FunctionAddress type="type_hex" level="4"/>
-            <ModuleHandle type="type_hex" level="4"/>
-        </LdrGetProcedureAddress>
-
-        <LdrLoadDll api="06">
-            <FileName type="type_filepath" level="2"/>
-            <Flags type="type_integer" level="4"/>
-            <BaseAddress type="type_hex" level="4"/>
-        </LdrLoadDll>
-
-        <NtClose api="07">
-            <Handle type="type_hex" level="4"/>
-        </NtClose>
-
-        <IsDebuggerPresent api="08">
-        </IsDebuggerPresent>
-
-        <NtWaitForSingleObject api="09">
-            <Milliseconds type="type_integer" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </NtWaitForSingleObject>
-
-        <NtDuplicateObject api="0a">
-            <Options type="type_integer" level="2"/>
-            <SourceHandle type="type_hex" level="4"/>
-            <SourceProcessHandle type="type_hex" level="4"/>
-            <TargetHandle type="type_hex" level="4"/>
-            <TargetProcessHandle type="type_hex" level="4"/>
-        </NtDuplicateObject>
-
-        <NtDelayExecution api="0b">
+        <NtDelayExecution code="01">
             <Milliseconds type="type_integer" level="2"/>
         </NtDelayExecution>
 
-        <NtSetTimer api="0c">
-            <Status type="type_string" level="2"/>
-            <Milliseconds type="type_integer" level="2"/>
-        </NtSetTimer>
+        <IsDebuggerPresent code="02">
+        </IsDebuggerPresent>
 
-        <NtSetTimerEx api="0d">
-            <Status type="type_string" level="2"/>
-            <Milliseconds type="type_integer" level="2"/>
-        </NtSetTimerEx>
+        <LdrLoadDll code="05">
+            <FileName type="type_filepath" level="2"/>
+            <Flags type="type_integer" level="2"/>
+            <BaseAddress type="type_hex" level="3"/>
+        </LdrLoadDll>
 
-        <LookupPrivilegeValueW api="0e">
+        <LdrGetDllHandle code="03">
+            <FileName type="type_filepath" level="2"/>
+            <ModuleHandle type="type_hex" level="3"/>
+        </LdrGetDllHandle>
+
+        <LdrGetProcedureAddress code="04">
+            <ModuleName type="type_filepath" level="2"/>
+            <FunctionName type="type_string" level="2"/>
+            <Ordinal type="type_integer" level="2"/>
+            <FunctionAddress type="type_hex" level="3"/>
+            <ModuleHandle type="type_hex" level="3"/>
+        </LdrGetProcedureAddress>
+
+        <LookupPrivilegeValueW code="05">
             <SystemName type="type_string" level="2"/>
             <PrivilegeName type="type_string" level="2"/>
         </LookupPrivilegeValueW>
 
-        <WriteConsoleA api="0f">
-            <Buffer type="type_string" level="2"/>
-            <ConsoleHandle type="type_string" level="4"/>
-        </WriteConsoleA>
+        <NtClose code="06">
+            <Handle type="type_hex" level="3"/>
+        </NtClose>
 
-        <WriteConsoleW api="10">
-            <Buffer type="type_string" level="2"/>
-            <ConsoleHandle type="type_string" level="4"/>
-        </WriteConsoleW>
-
-        <GetLastInputInfo api="11">
-        </GetLastInputInfo>
-
-        <GetSystemTime api="12">
-        </GetSystemTime>
-
-        <GetLocalTime api="13">
-        </GetLocalTime>
-
-        <NtQuerySystemTime api="14">
+        <NtQuerySystemTime code="07">
         </NtQuerySystemTime>
 
-        <GetSystemTimeAsFileTime api="15">
-        </GetSystemTimeAsFileTime>
+        <SetWindowsHookExA code="08">
+            <HookIdentifier type="type_integer" level="2"/>
+            <ProcedureAddress type="type_hex" level="3"/>
+            <ModuleAddress type="type_hex" level="3"/>
+            <ThreadId type="type_integer" level="3"/>
+        </SetWindowsHookExA>
 
-        <MsgWaitForMultipleObjectsEx api="16">
-            <Milliseconds type="type_integer" level="3"/>
-        </MsgWaitForMultipleObjectsEx>
-
-        <NtRaiseHardError api="17">
-            <ErrorStatus type="type_integer" level="2"/>
-            <ResponseOptions type="type_integer" level="2"/>
-        </NtRaiseHardError>
+        <SetWindowsHookExW code="09">
+            <HookIdentifier type="type_integer" level="2"/>
+            <ProcedureAddress type="type_hex" level="3"/>
+            <ModuleAddress type="type_hex" level="3"/>
+            <ThreadId type="type_integer" level="3"/>
+        </SetWindowsHookExW>
 
     </system>
 
-    <services cat="07">
+    <!--============= services category =============-->
 
-        <OpenSCManagerA api="01">
+    <services code="07">
+
+        <CreateServiceA code="01">
+            <ServiceType type="type_integer" level="2"/>
+            <DisplayName type="type_string" level="2"/>
+            <BinaryPathName type="type_string" level="2"/>
+            <ServiceStartName type="type_string" level="2"/>
+            <DesiredAccess type="type_integer" level="2"/>
+            <ServiceName type="type_string" level="2"/>
+            <StartType type="type_integer" level="2"/>
+            <Password type="type_string" level="3"/>
+            <ErrorControl type="type_integer" level="3"/>
+            <ServiceControlHandle type="type_hex" level="3"/>
+        </CreateServiceA>
+
+        <CreateServiceW code="02">
+            <ServiceType type="type_integer" level="2"/>
+            <DisplayName type="type_string" level="2"/>
+            <BinaryPathName type="type_string" level="2"/>
+            <ServiceStartName type="type_string" level="2"/>
+            <DesiredAccess type="type_integer" level="2"/>
+            <ServiceName type="type_string" level="2"/>
+            <StartType type="type_integer" level="2"/>
+            <Password type="type_string" level="3"/>
+            <ErrorControl type="type_integer" level="3"/>
+            <ServiceControlHandle type="type_hex" level="3"/>
+        </CreateServiceW>
+
+        <StartServiceA code="03">
+            <Arguments type="type_string" level="2"/>
+            <ServiceHandle type="type_hex" level="3"/>
+        </StartServiceA>
+
+        <StartServiceW code="04">
+            <Arguments type="type_string" level="2"/>
+            <ServiceHandle type="type_hex" level="3"/>
+        </StartServiceW>
+
+        <OpenServiceA code="05">
+            <DesiredAccess type="type_integer" level="2"/>
+            <ServiceName type="type_string" level="2"/>
+            <ServiceControlManager type="type_hex" level="3"/>
+        </OpenServiceA>
+
+        <OpenServiceW code="06">
+            <DesiredAccess type="type_integer" level="2"/>
+            <ServiceName type="type_string" level="2"/>
+            <ServiceControlManager type="type_hex" level="3"/>
+        </OpenServiceW>
+
+        <DeleteService code="07">
+            <ServiceHandle type="type_hex" level="3"/>
+        </DeleteService>
+
+        <OpenSCManagerA code="08">
             <MachineName type="type_string" level="2"/>
             <DatabaseName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
         </OpenSCManagerA>
 
-        <OpenSCManagerW api="02">
+        <OpenSCManagerW code="09">
             <MachineName type="type_string" level="2"/>
             <DatabaseName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
         </OpenSCManagerW>
 
-        <OpenServiceA api="03">
-            <DesiredAccess type="type_integer" level="2"/>
-            <ServiceName type="type_string" level="2"/>
-            <ServiceControlManager type="type_hex" level="2"/>
-        </OpenServiceA>
-
-        <OpenServiceW api="04">
-            <DesiredAccess type="type_integer" level="2"/>
-            <ServiceName type="type_string" level="2"/>
-            <ServiceControlManager type="type_hex" level="2"/>
-        </OpenServiceW>
-
-        <StartServiceA api="05">
-            <Arguments type="type_string" level="2"/>
-            <ServiceHandle type="type_hex" level="4"/>
-        </StartServiceA>
-
-        <StartServiceW api="06">
-            <Arguments type="type_string" level="2"/>
-            <ServiceHandle type="type_hex" level="4"/>
-        </StartServiceW>
-
-        <CreateServiceA api="07">
-            <ServiceType type="type_integer" level="2"/>
-            <DisplayName type="type_string" level="2"/>
-            <BinaryPathName type="type_string" level="2"/>
-            <ServiceStartName type="type_string" level="2"/>
-            <DesiredAccess type="type_integer" level="2"/>
-            <ServiceName type="type_string" level="2"/>
-            <StartType type="type_integer" level="2"/>
-            <Password type="type_string" level="3"/>
-            <ErrorControl type="type_integer" level="3"/>
-            <ServiceControlHandle type="type_hex" level="4"/>
-        </CreateServiceA>
-
-        <CreateServiceW api="08">
-            <ServiceType type="type_integer" level="2"/>
-            <DisplayName type="type_string" level="2"/>
-            <BinaryPathName type="type_string" level="2"/>
-            <ServiceStartName type="type_string" level="2"/>
-            <DesiredAccess type="type_integer" level="2"/>
-            <ServiceName type="type_string" level="2"/>
-            <StartType type="type_integer" level="2"/>
-            <Password type="type_string" level="3"/>
-            <ErrorControl type="type_integer" level="3"/>
-            <ServiceControlHandle type="type_hex" level="4"/>
-        </CreateServiceW>
-
-        <ControlService api="09">
+        <ControlService code="0a">
             <ControlCode type="type_integer" level="2"/>
-            <ServiceHandle type="type_hex" level="4"/>
+            <ServiceHandle type="type_hex" level="3"/>
         </ControlService>
-
-        <DeleteService api="0a">
-            <ServiceHandle type="type_hex" level="4"/>
-        </DeleteService>
 
     </services>
 
-    <synchronization cat="08">
+    <!--============= synchronization category =============-->
 
-        <NtCreateMutant api="01">
-            <MutexName type="type_string" level="2"/>
-            <InitialOwner type="type_integer" level="3"/>
-            <Handle type="type_hex" level="4"/>
-        </NtCreateMutant>
+    <synchronization code="08">
 
-        <NtOpenEvent api="02">
-            <EventName type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </NtOpenEvent>
-
-        <NtOpenMutant api="03">
-            <MutexName type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </NtOpenMutant>
-
-        <NtAddAtom api="04">
+        <NtAddAtom code="01">
             <AtomName type="type_string" level="2"/>
             <Atom type="type_hex" level="2"/>
         </NtAddAtom>
 
-        <NtFindAtom api="05">
-            <AtomName type="type_string" level="2"/>
-            <Atom type="type_hex" level="2"/>
-        </NtFindAtom>
-
-        <NtDeleteAtom api="06">
-            <Atom type="type_hex" level="2"/>
-        </NtDeleteAtom>
-
-        <NtCreateEvent api="07">
+        <NtCreateEvent code="02">
             <EventName type="type_string" level="2"/>
             <EventType type="type_integer" level="2"/>
             <InitialState type="type_integer" level="2"/>
-            <Handle type="type_hex" level="4"/>
+            <Handle type="type_hex" level="3"/>
         </NtCreateEvent>
 
-        <NtCreateNamedPipeFile api="08">
+        <NtCreateMutant code="03">
+            <MutexName type="type_string" level="2"/>
+            <InitialOwner type="type_integer" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </NtCreateMutant>
+
+        <NtCreateNamedPipeFile code="04">
             <PipeName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
             <SharedAccess type="type_integer" level="2"/>
-            <NamedPipeHandle type="type_hex" level="4"/>
+            <NamedPipeHandle type="type_hex" level="3"/>
         </NtCreateNamedPipeFile>
+
+        <NtOpenMutant code="05">
+            <MutexName type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </NtOpenMutant>
 
     </synchronization>
 
-    <registry cat="09">
+    <!--============= registry category =============-->
 
-        <RegOpenKeyExA api="01">
-            <Registry type="type_hex" level="2"/>
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegOpenKeyExA>
+    <registry code="09">
 
-        <RegOpenKeyExW api="02">
-            <Registry type="type_hex" level="2"/>
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegOpenKeyExW>
-
-        <RegQueryValueExA api="03">
-            <Type type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Data type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegQueryValueExA>
-
-        <RegQueryValueExW api="04">
-            <Type type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Data type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegQueryValueExW>
-
-        <RegCloseKey api="05">
-            <Handle type="type_hex" level="4"/>
-        </RegCloseKey>
-
-        <RegQueryInfoKeyA api="06">
-            <Class type="type_string" level="2"/>
-            <MaxClassLength type="type_integer" level="2"/>
-            <MaxValueLength type="type_integer" level="2"/>
-            <MaxValueNameLength type="type_integer" level="2"/>
-            <ValueCount type="type_integer" level="2"/>
-            <MaxSubKeyLength type="type_integer" level="2"/>
-            <SubKeyCount type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="2"/>
-        </RegQueryInfoKeyA>
-
-        <RegQueryInfoKeyW api="07">
-            <Class type="type_string" level="2"/>
-            <MaxClassLength type="type_integer" level="2"/>
-            <MaxValueLength type="type_integer" level="2"/>
-            <MaxValueNameLength type="type_integer" level="2"/>
-            <ValueCount type="type_integer" level="2"/>
-            <MaxSubKeyLength type="type_integer" level="2"/>
-            <SubKeyCount type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="2"/>
-        </RegQueryInfoKeyW>
-
-        <RegCreateKeyExA api="08">
-            <Registry type="type_hex" level="2"/>
-            <Access type="type_integer" level="2"/>
-            <Class type="type_string" level="2"/>
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegCreateKeyExA>
-
-        <RegCreateKeyExW api="09">
-            <Registry type="type_hex" level="2"/>
-            <Access type="type_integer" level="2"/>
-            <Class type="type_string" level="2"/>
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegCreateKeyExW>
-
-        <RegEnumValueA api="0a">
-            <Index type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Data type="type_hex" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumValueA>
-
-        <RegEnumValueW api="0b">
-            <Index type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Data type="type_hex" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumValueW>
-
-        <RegEnumKeyA api="0c">
-            <Index type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumKeyA>
-
-        <RegEnumKeyW api="0d">
-            <Index type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumKeyW>
-
-        <RegEnumKeyExA api="0e">
-            <Class type="type_string" level="2"/>
-            <Index type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumKeyExA>
-
-        <RegEnumKeyExW api="0f">
-            <Class type="type_string" level="2"/>
-            <Index type="type_integer" level="2"/>
-            <Name type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegEnumKeyExW>
-
-        <RegSetValueExA api="10">
-            <Buffer type="type_string" level="2"/>
-            <Type type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegSetValueExA>
-
-        <RegSetValueExW api="11">
-            <Buffer type="type_string" level="2"/>
-            <Type type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegSetValueExW>
-
-        <RegDeleteValueA api="12">
-            <ValueName type="type_string" level="2"/>
-            <Handle type="type_hex" level="2"/>
-        </RegDeleteValueA>
-
-        <RegDeleteValueW api="13">
-            <FullName type="type_string" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegDeleteValueW>
-
-        <RegDeleteKeyA api="14">
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegDeleteKeyA>
-
-        <RegDeleteKeyW api="15">
-            <SubKey type="type_string" level="2"/>
-            <Handle type="type_hex" level="4"/>
-        </RegDeleteKeyW>
-
-        <NtCreateKey api="16">
+       <NtCreateKey code="01">
             <ObjectAttributes type="type_string" level="2"/>
             <Class type="type_string" level="2"/>
             <Disposition type="type_integer" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
+            <KeyHandle type="type_hex" level="3"/>
         </NtCreateKey>
 
-        <NtOpenKey api="17">
+        <RegCreateKeyExA code="02">
+            <Registry type="type_hex" level="2"/>
+            <Access type="type_integer" level="2"/>
+            <Class type="type_string" level="2"/>
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegCreateKeyExA>
+
+        <RegCreateKeyExW code="03">
+            <Registry type="type_hex" level="2"/>
+            <Access type="type_integer" level="2"/>
+            <Class type="type_string" level="2"/>
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegCreateKeyExW>
+
+        <NtOpenKey code="04">
             <DesiredAccess type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
+            <KeyHandle type="type_hex" level="3"/>
         </NtOpenKey>
 
-        <NtOpenKeyEx api="18">
+        <NtOpenKeyEx code="05">
             <ObjectAttributes type="type_string" level="2"/>
             <ObjectAttributesName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-            <ObjectAttributesHandle type="type_hex" level="4"/>
+            <KeyHandle type="type_hex" level="3"/>
+            <ObjectAttributesHandle type="type_hex" level="3"/>
         </NtOpenKeyEx>
 
-        <NtQueryKey api="19">
-            <KeyInformationClass type="type_integer" level="2"/>
-            <KeyInformation type="type_string" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-        </NtQueryKey>
+        <RegOpenKeyExA code="06">
+            <Registry type="type_hex" level="2"/>
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegOpenKeyExA>
 
-        <NtQueryValueKey api="1a">
-            <Type type="type_integer" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <Data type="type_string" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-        </NtQueryValueKey>
+        <RegOpenKeyExW code="07">
+            <Registry type="type_hex" level="2"/>
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegOpenKeyExW>
 
-        <NtQueryMultipleValueKey api="1b">
-            <FullName type="type_string" level="2"/>
-            <ValueName type="type_string" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-        </NtQueryMultipleValueKey>
-
-        <NtSetValueKey api="1c">
+        <NtSetValueKey code="08">
             <ValueName type="type_string" level="2"/>
             <FullName type="type_string" level="2"/>
             <Buffer type="type_hex" level="2"/>
             <Type type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="2"/>
-            <BufferLength type="type_integer" level="3"/>
+            <BufferLength type="type_integer" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
         </NtSetValueKey>
 
-        <NtEnumerateKey api="1d">
-            <Index type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-        </NtEnumerateKey>
+        <RegSetValueExA code="09">
+            <Buffer type="type_string" level="2"/>
+            <Type type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegSetValueExA>
 
-        <NtEnumerateValueKey api="1e">
-            <Index type="type_integer" level="2"/>
-            <KeyValueInformationClass type="type_integer" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
-        </NtEnumerateValueKey>
+        <RegSetValueExW code="0a">
+            <Buffer type="type_string" level="2"/>
+            <Type type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegSetValueExW>
 
-        <RegNotifyChangeKeyValue api="1f">
-            <FullName type="type_string" level="2"/>
-            <NotifyFilter type="type_integer" level="2"/>
-            <WatchSubtree type="type_integer" level="2"/>
-            <Asynchronous type="type_integer" level="2"/>
-        </RegNotifyChangeKeyValue>
-
-        <NtDeleteKey api="20">
-            <KeyHandle type="type_hex" level="4"/>
+        <NtDeleteKey code="0b">
+            <KeyHandle type="type_hex" level="3"/>
         </NtDeleteKey>
 
-        <NtDeleteValueKey api="21">
+        <NtDeleteValueKey code="0c">
             <FullName type="type_string" level="2"/>
             <ValueName type="type_string" level="2"/>
-            <KeyHandle type="type_hex" level="4"/>
+            <KeyHandle type="type_hex" level="3"/>
         </NtDeleteValueKey>
 
-        <NtLoadKey api="22">
-        </NtLoadKey>
+        <RegDeleteKeyA code="0d">
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegDeleteKeyA>
+
+        <RegDeleteKeyW code="0e">
+            <SubKey type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegDeleteKeyW>
+
+        <RegDeleteValueA code="0f">
+            <ValueName type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegDeleteValueA>
+
+        <RegDeleteValueW code="10">
+            <FullName type="type_string" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegDeleteValueW>
+
+        <NtEnumerateKey code="11">
+            <Index type="type_integer" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
+        </NtEnumerateKey>
+
+        <NtEnumerateValueKey code="12">
+            <Index type="type_integer" level="2"/>
+            <KeyValueInformationClass type="type_integer" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
+        </NtEnumerateValueKey>
+
+        <RegEnumKeyA code="13">
+            <Index type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumKeyA>
+
+        <RegEnumKeyW code="14">
+            <Index type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumKeyW>
+
+        <RegEnumKeyExA code="15">
+            <Class type="type_string" level="2"/>
+            <Index type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumKeyExA>
+
+        <RegEnumKeyExW code="16">
+            <Class type="type_string" level="2"/>
+            <Index type="type_integer" level="2"/>
+            <Name type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumKeyExW>
+
+        <RegEnumValueA code="17">
+            <Index type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Data type="type_hex" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumValueA>
+
+        <RegEnumValueW code="18">
+            <Index type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Data type="type_hex" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegEnumValueW>
+
+        <RegQueryValueExA code="19">
+            <Type type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Data type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegQueryValueExA>
+
+        <RegQueryValueExW code="1a">
+            <Type type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Data type="type_string" level="2"/>
+            <Handle type="type_hex" level="3"/>
+        </RegQueryValueExW>
+
+        <NtQueryKey code="1b">
+            <KeyInformationClass type="type_integer" level="2"/>
+            <KeyInformation type="type_string" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
+        </NtQueryKey>
+
+        <NtQueryValueKey code="1c">
+            <Type type="type_integer" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <Data type="type_string" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
+        </NtQueryValueKey>
+
+        <NtQueryMultipleValueKey code="1d">
+            <FullName type="type_string" level="2"/>
+            <ValueName type="type_string" level="2"/>
+            <KeyHandle type="type_hex" level="3"/>
+        </NtQueryMultipleValueKey>
+
+        <RegCloseKey code="1e">
+            <Handle type="type_hex" level="3"/>
+        </RegCloseKey>
 
     </registry>
 
-    <filesystem cat="0a">
+    <!--============= filesystem category =============-->
 
-        <GetFileVersionInfoW api="01">
-            <PathName type="type_filepath" level="2"/>
-        </GetFileVersionInfoW>
+    <filesystem code="0a">
 
-        <GetFileVersionInfoSizeW api="02">
-            <PathName type="type_filepath" level="2"/>
-        </GetFileVersionInfoSizeW>
-
-        <GetVolumeNameForVolumeMountPointW api="03">
-            <VolumeMountPoint type="type_filepath" level="2"/>
-            <VolumeName type="type_filepath" level="2"/>
-        </GetVolumeNameForVolumeMountPointW>
-
-        <GetVolumeInformationByHandleW api="04">
-            <VolumeName type="type_string" level="3"/>
-            <VolumeSerial type="type_hex" level="4"/>
-            <Handle type="type_hex" level="4"/>
-        </GetVolumeInformationByHandleW>
-
-        <GetDiskFreeSpaceA api="05">
-            <RootPathName type="type_string" level="3"/>
-        </GetDiskFreeSpaceA>
-
-        <GetDiskFreeSpaceW api="06">
-            <RootPathName type="type_string" level="3"/>
-        </GetDiskFreeSpaceW>
-
-        <GetDiskFreeSpaceExA api="07">
-            <DirectoryName type="type_filepath" level="2"/>
-        </GetDiskFreeSpaceExA>
-
-        <GetDiskFreeSpaceExW api="08">
-            <DirectoryName type="type_filepath" level="2"/>
-        </GetDiskFreeSpaceExW>
-
-        <FindFirstFileExA api="09">
+       <NtCreateFile code="01">
+            <CreateDisposition type="type_integer" level="2"/>
+            <DesiredAccess type="type_integer" level="2"/>
             <FileName type="type_filepath" level="2"/>
-            <FirstCreateTimeLow type="type_hex" level="3"/>
-            <FirstCreateTimeHigh type="type_hex" level="3"/>
-        </FindFirstFileExA>
+            <FileHandle type="type_hex" level="3"/>
+        </NtCreateFile>
 
-        <FindFirstFileExW api="0a">
+        <NtOpenFile code="02">
+            <DesiredAccess type="type_integer" level="2"/>
             <FileName type="type_filepath" level="2"/>
-            <FirstCreateTimeLow type="type_hex" level="3"/>
-            <FirstCreateTimeHigh type="type_hex" level="3"/>
-        </FindFirstFileExW>
+            <FileHandle type="type_hex" level="3"/>
+        </NtOpenFile>
 
-        <CreateDirectoryW api="0b">
-            <DirectoryName type="type_filepath" level="2"/>
-        </CreateDirectoryW>
+        <NtReadFile code="03">
+            <Buffer type="type_string" level="2"/>
+            <FileHandle type="type_hex" level="3"/>
+        </NtReadFile>
 
-        <RemoveDirectoryA api="0c">
-            <DirectoryName type="type_filepath" level="2"/>
-        </RemoveDirectoryA>
+        <NtWriteFile code="04">
+            <Buffer type="type_string" level="2"/>
+            <FileHandle type="type_hex" level="3"/>
+        </NtWriteFile>
 
-        <RemoveDirectoryW api="0d">
-            <DirectoryName type="type_filepath" level="2"/>
-        </RemoveDirectoryW>
-
-        <DeleteFileA api="0e">
-            <FileName type="type_filepath" level="2"/>
-        </DeleteFileA>
-
-        <DeleteFileW api="0f">
-            <FileName type="type_filepath" level="2"/>
-        </DeleteFileW>
-
-        <CopyFileA api="10">
+        <CopyFileA code="05">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
             <ExistedBefore type="type_filepath" level="2"/>
         </CopyFileA>
 
-        <CopyFileW api="11">
+        <CopyFileW code="06">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
             <ExistedBefore type="type_filepath" level="2"/>
         </CopyFileW>
 
-        <CopyFileExW api="12">
+        <CopyFileExW code="07">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
             <CopyFlags type="type_integer" level="2"/>
             <ExistedBefore type="type_filepath" level="2"/>
         </CopyFileExW>
 
-        <MoveFileWithProgressW api="13">
+        <DeleteFileA code="08">
+            <FileName type="type_filepath" level="2"/>
+        </DeleteFileA>
+
+        <DeleteFileW code="09">
+            <FileName type="type_filepath" level="2"/>
+        </DeleteFileW>
+
+        <FindFirstFileExA code="0a">
+            <FileName type="type_filepath" level="2"/>
+            <FirstCreateTimeLow type="type_hex" level="2"/>
+            <FirstCreateTimeHigh type="type_hex" level="2"/>
+        </FindFirstFileExA>
+
+        <FindFirstFileExW code="0b">
+            <FileName type="type_filepath" level="2"/>
+            <FirstCreateTimeLow type="type_hex" level="2"/>
+            <FirstCreateTimeHigh type="type_hex" level="2"/>
+        </FindFirstFileExW>
+
+        <NtQueryFullAttributesFile code="0c">
+            <FileName type="type_filepath" level="2"/>
+        </NtQueryFullAttributesFile>
+
+        <NtQueryInformationFile code="0d">
+            <FileInformationClass type="type_integer" level="2"/>
+            <HandleName type="type_filepath" level="2"/>
+            <FileInformation type="type_hex" level="2"/>
+            <FileHandle type="type_hex" level="3"/>
+        </NtQueryInformationFile>
+
+        <SHGetFileInfoW code="0e">
+            <Path type="type_filepath" level="2"/>
+            <Flags type="type_integer" level="2"/>
+            <DisplayName type="type_string" level="3"/>
+            <TypeName type="type_string" level="3"/>
+        </SHGetFileInfoW>
+
+        <MoveFileWithProgressW code="0f">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
         </MoveFileWithProgressW>
 
-        <MoveFileWithProgressTransactedW api="14">
-            <ExistingFileName type="type_filepath" level="2"/>
-            <NewFileName type="type_filepath" level="2"/>
-            <Flags type="type_integer" level="2"/>
-        </MoveFileWithProgressTransactedW>
-
-        <FindFirstChangeNotificationW api="15">
-            <PathName type="type_filepath" level="2"/>
-            <NotifyFilter type="type_integer" level="2"/>
-            <WatchSubtree type="type_integer" level="2"/>
-        </FindFirstChangeNotificationW>
-
-        <SHGetFolderPathW api="16">
-            <Folder type="type_string" level="2"/>
-            <Path type="type_filepath" level="2"/>
-        </SHGetFolderPathW>
-
-        <SHGetKnownFolderPath api="17">
-            <Flags type="type_integer" level="2"/>
-            <Path type="type_filepath" level="2"/>
-            <FolderID type="type_string" level="3"/>
-        </SHGetKnownFolderPath>
-
-        <SHGetFileInfoW api="18">
-            <DisplayName type="type_string" level="2"/>
-            <TypeName type="type_string" level="2"/>
-            <Path type="type_filepath" level="2"/>
-            <Flags type="type_integer" level="2"/>
-        </SHGetFileInfoW>
-
-        <NtOpenFile api="19">
-            <DesiredAccess type="type_integer" level="2"/>
-            <FileName type="type_filepath" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtOpenFile>
-
-        <NtCreateFile api="1a">
-            <CreateDisposition type="type_integer" level="2"/>
-            <DesiredAccess type="type_integer" level="2"/>
-            <FileName type="type_filepath" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtCreateFile>
-
-        <NtReadFile api="1b">
-            <Buffer type="type_string" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtReadFile>
-
-        <NtWriteFile api="1c">
-            <Buffer type="type_string" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtWriteFile>
-
-        <NtQueryDirectoryFile api="1d">
-            <FileInformationClass type="type_integer" level="2"/>
-            <FileName type="type_filepath" level="2"/>
-            <FileInformation type="type_hex" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtQueryDirectoryFile>
-
-        <NtSetInformationFile api="1e">
+        <NtSetInformationFile code="10">
             <FileInformationClass type="type_integer" level="2"/>
             <HandleName type="type_filepath" level="2"/>
             <FileInformation type="type_hex" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
+            <FileHandle type="type_hex" level="3"/>
         </NtSetInformationFile>
-
-        <NtQueryAttributesFile api="1f">
-            <FileName type="type_filepath" level="2"/>
-        </NtQueryAttributesFile>
-
-        <NtQueryFullAttributesFile api="20">
-            <FileName type="type_filepath" level="2"/>
-        </NtQueryFullAttributesFile>
-
-        <NtQueryInformationFile api="21">
-            <FileInformationClass type="type_integer" level="2"/>
-            <HandleName type="type_filepath" level="2"/>
-            <FileInformation type="type_hex" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
-        </NtQueryInformationFile>
-
-        <NtOpenDirectoryObject api="22">
-            <DesiredAccess type="type_integer" level="2"/>
-            <ObjectAttributes type="type_string" level="2"/>
-            <DirectoryHandle type="type_hex" level="4"/>
-        </NtOpenDirectoryObject>
-
-        <NtQueryDirectoryObject api="23">
-            <DirectoryHandle type="type_hex" level="4"/>
-        </NtQueryDirectoryObject>
 
     </filesystem>
 
-    <device cat="0b">
+    <!--============= device category =============-->
 
-        <DeviceIoControl api="01">
+    <device code="0b">
+
+        <DeviceIoControl code="01">
             <OutBuffer type="type_hex" level="2"/>
             <InBuffer type="type_hex" level="2"/>
             <IoControlCode type="type_integer" level="2"/>
-            <DeviceHandle type="type_hex" level="4"/>
+            <DeviceHandle type="type_hex" level="3"/>
         </DeviceIoControl>
 
-        <NtDeviceIoControlFile api="02">
+        <NtDeviceIoControlFile code="02">
             <InputBuffer type="type_hex" level="2"/>
             <OutputBuffer type="type_hex" level="2"/>
             <IoControlCode type="type_integer" level="2"/>
-            <FileHandle type="type_hex" level="4"/>
+            <FileHandle type="type_hex" level="3"/>
         </NtDeviceIoControlFile>
 
     </device>
 
-    <crypto cat="0c">
+    <!--============= misc category =============-->
 
-        <CryptAcquireContextA api="01">
-            <Flags type="type_integer" level="2"/>
-            <Container type="type_string" level="2"/>
-            <Provider type="type_string" level="2"/>
-        </CryptAcquireContextA>
+    <misc code="0c">
 
-        <CryptAcquireContextW api="02">
-            <Flags type="type_integer" level="2"/>
-            <Container type="type_string" level="2"/>
-            <Provider type="type_string" level="2"/>
-        </CryptAcquireContextW>
-
-        <CryptCreateHash api="03">
-            <Algid type="type_hex" level="2"/>
-        </CryptCreateHash>
-
-        <CryptHashData api="04">
-            <Buffer type="type_string" level="2"/>
-            <CryptHash type="type_hex" level="4"/>
-        </CryptHashData>
-
-        <CryptGenKey api="05">
-            <Algid type="type_hex" level="2"/>
-        </CryptGenKey>
-
-        <CryptExportKey api="06">
-            <Buffer type="type_hex" level="2"/>
-            <BlobType type="type_integer" level="2"/>
-            <Flags type="type_integer" level="2"/>
-            <Length type="type_integer" level="3"/>
-        </CryptExportKey>
-
-        <CryptEncrypt api="07">
-            <Buffer type="type_string" level="2"/>
-            <Final type="type_integer" level="2"/>
-            <CryptKey type="type_hex" level="2"/>
-            <CryptHash type="type_hex" level="2"/>
-        </CryptEncrypt>
-
-        <CryptDecrypt api="08">
-            <Buffer type="type_string" level="2"/>
-            <Final type="type_integer" level="2"/>
-            <CryptKey type="type_hex" level="2"/>
-            <CryptHash type="type_hex" level="2"/>
-        </CryptDecrypt>
-
-        <CryptDecodeObjectEx api="09">
-            <Flags type="type_integer" level="2"/>
-            <Encoded type="type_string" level="2"/>
-            <CertEncodingType type="type_hex" level="2"/>
-        </CryptDecodeObjectEx>
-
-        <CryptEnumProvidersW api="0a">
-            <Index type="type_integer" level="2"/>
-            <ProviderName type="type_string" level="2"/>
-        </CryptEnumProvidersW>
-
-        <CryptImportPublicKeyInfo api="0b">
-            <AlgOID type="type_string" level="2"/>
-            <CertEncodingType type="type_hex" level="2"/>
-            <Blob type="type_hex" level="2"/>
-        </CryptImportPublicKeyInfo>
-
-    </crypto>
-
-    <misc cat="0d">
-
-        <NtSetInformationProcess api="01">
-            <ProcessInformationClass type="type_integer" level="2"/>
-            <Value type="type_integer" level="2"/>
-        </NtSetInformationProcess>
-
-        <NtQuerySystemInformation api="02">
-            <ProcessInformationClass type="type_integer" level="2"/>
-        </NtQuerySystemInformation>
-
-        <GetSystemInfo api="03">
-        </GetSystemInfo>
-
-        <LsaOpenPolicy api="04">
-        </LsaOpenPolicy>
-
-        <GetSystemMetrics api="05">
-            <SystemMetricIndex type="type_integer" level="2"/>
-        </GetSystemMetrics>
-
-        <SystemParametersInfoA api="06">
-            <Action type="type_integer" level="2"/>
-            <uiParam type="type_integer" level="2"/>
-        </SystemParametersInfoA>
-
-        <SystemParametersInfoW api="07">
-            <Action type="type_integer" level="2"/>
-            <uiParam type="type_integer" level="2"/>
-        </SystemParametersInfoW>
-
-        <GetComputerNameA api="08">
-            <ComputerName type="type_string" level="4"/>
-        </GetComputerNameA>
-
-        <GetComputerNameW api="09">
-            <ComputerName type="type_string" level="4"/>
-        </GetComputerNameW>
-
-        <GetUserNameA api="0a">
-            <Name type="type_string" level="4"/>
-        </GetUserNameA>
-
-        <GetUserNameW api="0b">
-            <Name type="type_string" level="4"/>
-        </GetUserNameW>
-
-        <IsUserAdmin api="0c">
-        </IsUserAdmin>
-
-        <GetCursorPos api="0d">
-            <x type="type_integer" level="4"/>
-            <y type="type_integer" level="4"/>
-        </GetCursorPos>
-
-        <GetCurrentHwProfileW api="0e">
-            <ProfileName type="type_string" level="4"/>
-            <ProfileGUID type="type_string" level="4"/>
-        </GetCurrentHwProfileW>
-
-        <GlobalMemoryStatus api="0f">
-            <TotalPhysicalMB type="type_integer" level="3"/>
-            <MemoryLoad type="type_integer" level="3"/>
-        </GlobalMemoryStatus>
-
-        <GlobalMemoryStatusEx api="10">
-            <TotalPhysicalMB type="type_integer" level="3"/>
-            <MemoryLoad type="type_integer" level="3"/>
-        </GlobalMemoryStatusEx>
-
-        <RasConnectionNotificationW api="11">
-        </RasConnectionNotificationW>
-
-        <SystemTimeToTzSpecificLocalTime api="12">
-        </SystemTimeToTzSpecificLocalTime>
-
-        <CLSIDFromProgID api="13">
-            <ProgID type="type_string" level="2"/>
-        </CLSIDFromProgID>
-
-        <SetupDiGetClassDevsA api="14">
-            <ClassGuid type="type_string" level="3"/>
-        </SetupDiGetClassDevsA>
-
-        <SetupDiGetClassDevsW api="15">
-            <ClassGuid type="type_string" level="3"/>
-        </SetupDiGetClassDevsW>
-
-        <SetupDiGetDeviceRegistryPropertyA api="16">
-            <Property type="type_integer" level="2"/>
-            <PropertyBuffer type="type_string" level="4"/>
-        </SetupDiGetDeviceRegistryPropertyA>
-
-        <SetupDiGetDeviceRegistryPropertyW api="17">
-            <Property type="type_integer" level="2"/>
-            <PropertyBuffer type="type_string" level="4"/>
-        </SetupDiGetDeviceRegistryPropertyW>
-
-        <SaferIdentifyLevel api="18">
-        </SaferIdentifyLevel>
-
-        <RtlDecompressBuffer api="19">
-            <UncompressedBuffer type="type_hex" level="2"/>
-            <UncompressedBufferLength type="type_integer" level="2"/>
-            <UncompressedBufferAddress type="type_hex" level="4"/>
-        </RtlDecompressBuffer>
-
-        <PStoreCreateInstance api="1a">
-        </PStoreCreateInstance>
-
-        <NtLoadDriver api="1b">
+        <NtLoadDriver code="01">
             <DriverServiceName type="type_string" level="2"/>
         </NtLoadDriver>
 
-        <WNetGetProviderNameW api="1c">
-            <NetType type="type_integer" level="2"/>
-        </WNetGetProviderNameW>
-
     </misc>
-
-    <__notification__ cat="0e">
-
-        <__anomaly__ api="01">
-            <FunctionName type="type_string" level="2"/>
-            <UnhookType type="type_string" level="2"/>
-            <Subcategory type="type_string" level="2"/>
-            <OriginalBytes type="type_string" level="3"/>
-            <NewBytes type="type_string" level="3"/>
-            <FunctionAddress type="type_hex" level="4"/>
-            <ThreadIdentifier type="type_integer" level="4"/>
-        </__anomaly__>
-
-    </__notification__>
 
 </elements2mist>
