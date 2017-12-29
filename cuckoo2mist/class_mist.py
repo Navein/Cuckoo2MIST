@@ -205,7 +205,7 @@ class MIST(object):
             arguments = api_call["arguments"]
             category = api_call["category"]
             api = api_call["api"]
-            instruction = ["", "", "", ""]
+            instruction = list(instruction_template)
 
             category_node = self.apis.getroot().find(category)
             if category_node != None:
@@ -225,7 +225,7 @@ class MIST(object):
                     self.missing[category] = [api]
                 continue
 
-            instruction[0] = category_node.attrib["cat"] + " " + api_node.attrib["api"]
+            instruction[0] = category_node.attrib["code"] + " " + api_node.attrib["code"]
 
             for attrib_node in api_node.iter():
                 valtype = attrib_node.get("type")
