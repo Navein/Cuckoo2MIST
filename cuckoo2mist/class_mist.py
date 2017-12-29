@@ -225,7 +225,7 @@ class MIST(object):
                     self.missing[category] = [api]
                 continue
 
-            instruction[0] = category_node.attrib["code"] + " " + api_node.attrib["code"]
+            instruction[0] = category_node.attrib["category"] + " " + api_node.attrib["api"]
 
             for attrib_node in api_node.iter():
                 valtype = attrib_node.get("type")
