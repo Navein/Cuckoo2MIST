@@ -64,18 +64,22 @@ In version 0.3:
 
 In version 0.4:
 
-1. Update on codebase to allow execution of application from console after installation.
-2. Able to open and read JSON reports that are compressed with gzip format.
-3. Able to log unmatched APIs together with respective categories.
-4. Log file is now to be saved in user directory.
-5. The matching of APIs' parameters is now case insensitive.
+1. Update on codebase to allow usage from console after installation.
+2. cuckoo2mist can open and read JSON reports which are compressed with gzip format.
+3. All actions are now logged, for better tracking of issues during operation.
+4. Log file is now saved in user directory.
+5. The matching of API parameters is now case insensitive.
 6. Minor code mistakes corrected.
+
+In version 0.4.1:
+
+1. cuckoo_elements2mist.xml is updated to include API calls which are commonly used by malware, and important arguments in the respective APIs are set to level 2, for better generalization of behaviour.
 
 **Upcoming changes**
 
 1. Per-file MIST conversion & removal of generated MIST reports.
+2. URL module will be added to better handle URLs.
+3. More filters will be added to filter and refine MIST format.
+4. A module to utilise API handles will be added to support more types of analysis.
 
 Work on this fork is still ongoing. Contributors are welcomed to help improve this fork.
-
-
-
