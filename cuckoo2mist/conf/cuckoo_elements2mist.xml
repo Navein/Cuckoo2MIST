@@ -251,18 +251,18 @@
 
         <NtCreateThreadEx api="03">
             <CreateFlags type="type_integer" level="2"/>
-            <StartAddress type="type_hex" level="2"/>
             <ProcessHandle type="type_hex" level="3"/>
             <ThreadHandle type="type_hex" level="3"/>
+            <StartAddress type="type_hex" level="4"/>
         </NtCreateThreadEx>
 
         <RtlCreateUserThread api="04">
             <CreateSuspended type="type_integer" level="2"/>
-            <StartAddress type="type_hex" level="3"/>
             <StartParameter type="type_hex" level="3"/>
             <ThreadIdentifier type="type_integer" level="3"/>
             <ThreadHandle type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <StartAddress type="type_hex" level="4"/>
         </RtlCreateUserThread>
 
         <OpenThread api="05">
@@ -363,59 +363,59 @@
         <NtMapViewOfSection api="09">
             <Win32Protect type="type_integer" level="2"/>
             <StackPivoted type="type_string" level="2"/>
-            <ViewSize type="type_hex" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
+            <ViewSize type="type_hex" level="3"/>
             <SectionHandle type="type_hex" level="3"/>
             <SectionOffset type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtMapViewOfSection>
 
         <NtUnmapViewOfSection api="0a">
-            <RegionSize type="type_integer" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
+            <RegionSize type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtUnmapViewOfSection>
 
         <VirtualAllocEx api="0b">
             <Protection type="type_integer" level="2"/>
             <AllocationType type="type_integer" level="2"/>
-            <Size type="type_integer" level="2"/>
-            <Address type="type_hex" level="3"/>
+            <Size type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <Address type="type_hex" level="4"/>
         </VirtualAllocEx>
 
         <VirtualProtectEx api="0c">
             <Protection type="type_integer" level="2"/>
-            <Size type="type_integer" level="2"/>
-            <Address type="type_hex" level="3"/>
+            <Size type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <Address type="type_hex" level="4"/>
         </VirtualProtectEx>
 
         <VirtualFreeEx api="0d">
             <FreeType type="type_integer" level="2"/>
-            <Size type="type_integer" level="2"/>
-            <Address type="type_hex" level="3"/>
+            <Size type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <Address type="type_hex" level="4"/>
         </VirtualFreeEx>
 
         <NtAllocateVirtualMemory api="0e">
             <Protection type="type_integer" level="2"/>
             <StackPivoted type="type_string" level="2"/>
-            <RegionSize type="type_integer" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
+            <RegionSize type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtAllocateVirtualMemory>
 
         <NtWriteVirtualMemory api="0f">
             <Buffer type="type_hex" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtWriteVirtualMemory>
 
         <NtReadVirtualMemory api="10">
             <Buffer type="type_hex" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtReadVirtualMemory>
 
         <NtProtectVirtualMemory api="11">
@@ -424,15 +424,15 @@
             <MemoryType type="type_integer" level="2"/>
             <StackPivoted type="type_string" level="2"/>
             <NumberOfBytesProtected type="type_integer" level="3"/>
-            <BaseAddress type="type_hex" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtProtectVirtualMemory>
 
         <NtFreeVirtualMemory api="12">
             <FreeType type="type_integer" level="2"/>
-            <RegionSize type="type_integer" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
+            <RegionSize type="type_integer" level="3"/>
             <ProcessHandle type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </NtFreeVirtualMemory>
 
         <NtCreateSection api="13">
@@ -469,7 +469,7 @@
         <LdrLoadDll api="05">
             <FileName type="type_filepath" level="2"/>
             <Flags type="type_integer" level="2"/>
-            <BaseAddress type="type_hex" level="3"/>
+            <BaseAddress type="type_hex" level="4"/>
         </LdrLoadDll>
 
         <LdrGetDllHandle api="03">
@@ -481,8 +481,8 @@
             <ModuleName type="type_filepath" level="2"/>
             <FunctionName type="type_string" level="2"/>
             <Ordinal type="type_integer" level="2"/>
-            <FunctionAddress type="type_hex" level="3"/>
             <ModuleHandle type="type_hex" level="3"/>
+            <FunctionAddress type="type_hex" level="4"/>
         </LdrGetProcedureAddress>
 
         <LookupPrivilegeValueW api="05">
@@ -499,16 +499,16 @@
 
         <SetWindowsHookExA api="08">
             <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="3"/>
-            <ModuleAddress type="type_hex" level="3"/>
             <ThreadId type="type_integer" level="3"/>
+            <ProcedureAddress type="type_hex" level="4"/>
+            <ModuleAddress type="type_hex" level="4"/>
         </SetWindowsHookExA>
 
         <SetWindowsHookExW api="09">
             <HookIdentifier type="type_integer" level="2"/>
-            <ProcedureAddress type="type_hex" level="3"/>
-            <ModuleAddress type="type_hex" level="3"/>
             <ThreadId type="type_integer" level="3"/>
+            <ProcedureAddress type="type_hex" level="4"/>
+            <ModuleAddress type="type_hex" level="4"/>
         </SetWindowsHookExW>
 
     </system>
