@@ -466,18 +466,18 @@
         <IsDebuggerPresent api="02">
         </IsDebuggerPresent>
 
-        <LdrLoadDll api="05">
+        <LdrLoadDll api="03">
             <FileName type="type_filepath" level="2"/>
             <Flags type="type_integer" level="2"/>
             <BaseAddress type="type_hex" level="4"/>
         </LdrLoadDll>
 
-        <LdrGetDllHandle api="03">
+        <LdrGetDllHandle api="04">
             <FileName type="type_filepath" level="2"/>
             <ModuleHandle type="type_hex" level="3"/>
         </LdrGetDllHandle>
 
-        <LdrGetProcedureAddress api="04">
+        <LdrGetProcedureAddress api="05">
             <ModuleName type="type_filepath" level="2"/>
             <FunctionName type="type_string" level="2"/>
             <Ordinal type="type_integer" level="2"/>
@@ -485,26 +485,26 @@
             <FunctionAddress type="type_hex" level="4"/>
         </LdrGetProcedureAddress>
 
-        <LookupPrivilegeValueW api="05">
+        <LookupPrivilegeValueW api="06">
             <SystemName type="type_string" level="2"/>
             <PrivilegeName type="type_string" level="2"/>
         </LookupPrivilegeValueW>
 
-        <NtClose api="06">
+        <NtClose api="07">
             <Handle type="type_hex" level="3"/>
         </NtClose>
 
-        <NtQuerySystemTime api="07">
+        <NtQuerySystemTime api="08">
         </NtQuerySystemTime>
 
-        <SetWindowsHookExA api="08">
+        <SetWindowsHookExA api="09">
             <HookIdentifier type="type_integer" level="2"/>
             <ThreadId type="type_integer" level="3"/>
             <ProcedureAddress type="type_hex" level="4"/>
             <ModuleAddress type="type_hex" level="4"/>
         </SetWindowsHookExA>
 
-        <SetWindowsHookExW api="09">
+        <SetWindowsHookExW api="0a">
             <HookIdentifier type="type_integer" level="2"/>
             <ThreadId type="type_integer" level="3"/>
             <ProcedureAddress type="type_hex" level="4"/>
