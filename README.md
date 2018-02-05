@@ -32,7 +32,7 @@ $ python setup.py build
 $ python setup.py install
 ```
 
-setup.py will install murmurhash3 dependency.
+setup.py will install murmurhash3 and pymp dependency.
 If successful, import package to python
 
 ```
@@ -74,6 +74,12 @@ In version 0.4:
 In version 0.4.1:
 
 1. cuckoo_elements2mist.xml is updated to include API calls which are commonly used by malware, and important arguments in the respective APIs are set to level 2, for better generalization of behaviour.
+
+In version 0.4.2:
+
+1. API calls with A (ANSI) or W (Unicode) trailing are generalised into calls without the trailing character.
+2. MIST conversion scipt is speed up by applying multithreading processing using pymp. pymp is added as dependency.
+3. Added URL processing. URL is now split into two parts: domain and parameters. The two parts are placed on the same MIST level.
 
 **Upcoming changes**
 
