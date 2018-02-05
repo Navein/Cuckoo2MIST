@@ -11,7 +11,7 @@ setup(
     entry_points = {
         "console_scripts": ['cuckoo2mist = cuckoo2mist.cuckoo2mist:main']
     },
-    install_requires = ['mmh3==2.5.1'],
+    install_requires = ['mmh3==2.5.1', 'pymp-pypi==0.4.0'],
     # Metadata
     author = 'Philipp Trinius, Navein Chanderan, Chang Si Ju',
 )
