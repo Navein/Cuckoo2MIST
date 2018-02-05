@@ -32,16 +32,18 @@ import re
 import json
 import gzip
 import mmh3
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import xml.etree.cElementTree as ET
 from cStringIO import StringIO
 
-username_pattern = re.compile('[a-z]\\:[\\\\\\/_]{1,4}users[\\\\\\/_]{1,4}([^\\\\\\/\\:\\?\\,\\|\\"\\*_]+)')
+username_pattern = \
+    re.compile('[a-z]\\:[\\\\\\/_]{1,4}users[\\\\\\/_]{1,4}([^\\\\\\/\\:\\?\\,\\|\\"\\*_]+)')
 
-filepath_pattern = re.compile('^(((\\\\\\?\\?)?(\\\\\\\\\\?)?((\\\\)?[a-z]\\:)?' \
-                              '(\\\\[^\\\\\\/\\:\\?\\,\\|\\"\\*]+)*)\\\\)?' \
-                              '(([^\\\\\\/\\:\\?\\,\\|\\"\\*]+)\\.([^ \\\\\\/\\:\\?\\,\\|\\"\\*]+))?' \
-                              '(\\?([^\\?]*))?$')
+filepath_pattern = \
+    re.compile('^(((\\\\\\?\\?)?(\\\\\\\\\\?)?((\\\\)?[a-z]\\:)?' \
+               '(\\\\[^\\\\\\/\\:\\?\\,\\|\\"\\*]+)*)\\\\)?' \
+               '(([^\\\\\\/\\:\\?\\,\\|\\"\\*]+)\\.([^ \\\\\\/\\:\\?\\,\\|\\"\\*]+))?' \
+               '(\\?([^\\?]*))?$')
 
 instruction_template = ['', '', '', '']
 
@@ -50,11 +52,12 @@ class MIST(object):
         self.input_file = input_file
         self.behaviour_report = ""
         self.apis = apis
+        self.apis_root = self.apis.getroot()
         self.default_values = default_values
         self.mist_report = StringIO()
         self.cache = {}
-        self.missing = {}
-        self.nomatch = {}
+        self.missing = defaultdict(list)
+        self.nomatch = defaultdict(list)
         self.errormsg = ""
 
     def parse_report(self):
@@ -184,8 +187,6 @@ class MIST(object):
         return instruction
 
     def mist_url(self, instruction, value, level):
-        # TODO Possibly convert URL to a more meaningful form.
-
         # Replace unique username in url(/path) with 'username'
         # value = value.lower()
         # pattern = '[a-z]\\:(?:\\\\|\\/)users(?:\\\\|\\/)([^\\\\\\/\\:\\?\\,\\|\\"\\*]+)'
@@ -194,7 +195,11 @@ class MIST(object):
         #     if match.group(1):
         #         value = re.sub(match.group(1), 'username', value, count=1)
         # print(value)
-        instruction[level] = instruction[level] + " " + self.mist_str(value)
+
+        parts = value.split("?")
+        instruction[level] = instruction[level] + " " + self.mist_str(parts[0])
+        if len(parts) > 1:
+            instruction[level] = instruction[level] + " " + self.mist_str(parts[1])
         return instruction
 
     def convert_thread(self, pid, tid, api_calls):
@@ -207,22 +212,22 @@ class MIST(object):
             api = api_call["api"]
             instruction = list(instruction_template)
 
-            category_node = self.apis.getroot().find(category)
-            if category_node != None:
-                api_node = category_node.find(api)
-            else:
+            # Generalise API with trailing 'A' or 'W' by removing the 'A' or 'W'.
+            if api[-1] == 'A' or api[-1] == 'W':
+                api = api[:-1]
+                if api[-1] == '_':
+                    api = api[:-1]
+
+            category_node = self.apis_root.find(category)
+            if category_node == None:
                 api_node = None
-                try:
-                    self.missing[category]
-                except:
-                    self.missing[category] = []
+                self.missing[category]
+            else:
+                api_node = category_node.find(api)
 
             if api_node == None:
-                try:
-                    if api not in self.missing[category]:
-                        self.missing[category].append(api)
-                except:
-                    self.missing[category] = [api]
+                if api not in self.missing[category]:
+                    self.missing[category].append(api)
                 continue
 
             instruction[0] = category_node.attrib["category"] + " " + api_node.attrib["api"]
@@ -313,22 +318,22 @@ class MIST(object):
 
         return True
 
-# if __name__ == '__main__':
-#     conf_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "conf")
-#     apis = ET.ElementTree()
-#     apis.parse(os.path.join(conf_dir, "cuckoo_elements2mist.xml"))
-#     default_values = ET.ElementTree()
-#     default_values.parse(os.path.join(conf_dir, "cuckoo_types2mist.xml"))
+if __name__ == '__main__':
+    conf_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "conf")
+    apis = ET.ElementTree()
+    apis.parse(os.path.join(conf_dir, "cuckoo_elements2mist.xml"))
+    default_values = ET.ElementTree()
+    default_values.parse(os.path.join(conf_dir, "cuckoo_types2mist.xml"))
 
-#     input_file = "reports/report3.json"
-#     output_file = os.path.splitext(input_file)[0] + ".mist"
-#     print("Generating MIST report for %s" % input_file)
-#     x = MIST(input_file, apis=apis, default_values=default_values)
-#     if x.convert():
-#         if x.write(output_file):
-#             print("  Done")
-#     else:
-#         print(x.errormsg)
+    input_file = sys.argv[1]
+    output_file = os.path.splitext(input_file)[0] + ".mist"
+    print("Generating MIST report for %s" % input_file)
+    x = MIST(input_file, apis=apis, default_values=default_values)
+    if x.convert():
+        if x.write(output_file):
+            print("  Done")
+    else:
+        print(x.errormsg)
 
     # instruction = ["", "", "", ""]
     # x.mist_url(instruction, 'file:///C:/Users/David/AppData/Local/Temp/VirusShare_880d4fb8326db7483fdf30bcaa525cad.html')
