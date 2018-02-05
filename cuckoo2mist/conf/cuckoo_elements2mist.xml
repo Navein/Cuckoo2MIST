@@ -33,7 +33,7 @@
         <GetAddrInfo api="03">
             <ServiceName type="type_string" level="2"/>
             <Nodename type="type_string" level="2"/>
-        </GetAddrInfoW>
+        </GetAddrInfo>
 
         <HttpOpenRequest api="04">
             <Verb type="type_string" level="2"/>
