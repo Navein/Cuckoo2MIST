@@ -32,7 +32,12 @@ import time
 import argparse
 import logging
 import xml.etree.ElementTree as ET
-from thread_mist import MISTThread
+from multiprocessing import cpu_count
+from pymp import Parallel
+
+from class_mist import MIST
+
+num_cpus = cpu_count()
 
 CUCKOO2MIST_DIR = os.path.dirname(os.path.abspath(__file__))
 conf_dir = os.path.join(CUCKOO2MIST_DIR, "conf")
@@ -58,44 +63,42 @@ def init_logging():
     log.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(levelname)s:%(message)s')
 
-    ch = logging.StreamHandler()
-    ch.setFormatter(formatter)
-    ch.setLevel(logging.INFO)
-    log.addHandler(ch)
+    # ch = logging.StreamHandler()
+    # ch.setFormatter(formatter)
+    # ch.setLevel(logging.INFO)
+    # log.addHandler(ch)
 
-    fh = logging.FileHandler(os.path.join(os.path.expanduser("~"), "cuckoo2mist.log"))
+    fh = logging.FileHandler(
+             os.path.join(os.path.expanduser("~"), "cuckoo2mist.log"))
     fh.setFormatter(formatter)
     fh.setLevel(logging.INFO)
     log.addHandler(fh)
 
-def generate_mist_reports(files, outputdir, apis, default_values, logger=log, max_threads=10):
+def print_(text):
+    print('\r\x1b[K', end='')
+    print('{}'.format(text), end='')
+    sys.stdout.flush()
+
+def _generate_mist_report(input_file, output_file, apis, default_values, log,
+                          show_progress=False):
+    if show_progress:
+        print('Converting {:*>58s}'.format(input_file[-55:]))
+    mist = MIST(input_file, apis=apis, default_values=default_values)
+    if mist.convert():
+        mist.write(output_file)
+    if len(mist.errormsg) > 0:
+        log.warning(mist.errormsg)
+
+def generate_mist_reports(files, outputdir, apis, default_values, logger=log,
+                          show_progress=False):
     """Convert Cuckoo behaviour reports to MIST reports in multiple threads."""
-    threads = []
-    try:
-        for file in files:
-            fname_wext = os.path.basename(file)
+    with Parallel(num_cpus) as p:
+        for i in p.range(len(files)):
+            fname_wext = os.path.basename(files[i])
             (fname, fext) = os.path.splitext(fname_wext)
             output_file = os.path.join(outputdir, fname + ".mist")
-            while len(threads) >= max_threads:
-                time.sleep(5)
-                for t in threads:
-                    t.join(2.0)
-                    if not t.is_alive():
-                        threads.remove(t)
-            t = MISTThread(input_file=file,
-                           output_file=output_file,
-                           apis=apis,
-                           default_values=default_values,
-                           logger=logger)
-            threads.append(t)
-            t.start()
-    except KeyboardInterrupt:
-        pass
-
-    for t in threads:
-        t.join()
-        threads.remove(t)
-        sys.stdout.flush()
+            _generate_mist_report(files[i], output_file, apis, default_values,
+                                  logger, show_progress)
 
 def main():
     global conf_dir
@@ -103,9 +106,12 @@ def main():
     global output_dir
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("-c", "--confdir", type=str, default="", help="directory of configuration files")
-    parser.add_argument("-i", "--inputdir", type=str, default="", help="directory of Cuckoo behaviour reports")
-    parser.add_argument("-o", "--outputdir", type=str, default="", help="directory where MIST reports to be saved")
+    parser.add_argument("-c", "--confdir", type=str, default="",
+                        help="directory of configuration files")
+    parser.add_argument("-i", "--inputdir", type=str, default="",
+                        help="directory of Cuckoo behaviour reports")
+    parser.add_argument("-o", "--outputdir", type=str, default="",
+                        help="directory where MIST reports to be saved")
     args = parser.parse_args()
 
     init_logging()
