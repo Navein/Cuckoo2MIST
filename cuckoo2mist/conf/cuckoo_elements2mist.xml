@@ -25,37 +25,37 @@
             <Options type="type_integer" level="2"/>
         </DnsQuery>
 
-        <getaddrinfo api="03">
+        <getaddrinfo api="02">
             <ServiceName type="type_string" level="2"/>
             <NodeName type="type_url" level="2"/>
         </getaddrinfo>
 
-        <GetAddrInfo api="04">
+        <GetAddrInfo api="03">
             <ServiceName type="type_string" level="2"/>
             <Nodename type="type_string" level="2"/>
         </GetAddrInfoW>
 
-        <HttpOpenRequest api="05">
+        <HttpOpenRequest api="04">
             <Verb type="type_string" level="2"/>
             <Path type="type_url" level="2"/>
             <Flags type="type_string" level="2"/>
             <InternetHandle type="type_hex" level="3"/>
         </HttpOpenRequest>
 
-        <HttpSendRequest api="07">
+        <HttpSendRequest api="05">
             <PostData type="type_hex" level="2"/>
             <Headers type="type_string" level="2"/>
             <RequestHandle type="type_hex" level="3"/>
         </HttpSendRequest>
 
-        <HttpSendRequestEx api="09">
+        <HttpSendRequestEx api="06">
             <PostData type="type_hex" level="2"/>
             <Headers type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
             <RequestHandle type="type_hex" level="3"/>
         </HttpSendRequestEx>
 
-        <InternetOpen api="0b">
+        <InternetOpen api="07">
             <AccessType type="type_integer" level="2"/>
             <Agent type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
@@ -63,7 +63,7 @@
             <ProxyBypass type="type_string" level="3"/>
         </InternetOpen>
 
-        <InternetConnect api="0d">
+        <InternetConnect api="08">
             <Service type="type_integer" level="2"/>
             <ServerPort type="type_integer" level="2"/>
             <Flags type="type_integer" level="2"/>
@@ -71,65 +71,65 @@
             <InternetHandle type="type_hex" level="3"/>
         </InternetConnect>
 
-        <InternetOpenUrl api="0f">
+        <InternetOpenUrl api="09">
             <URL type="type_url" level="2"/>
             <Headers type="type_string" level="2"/>
             <Flags type="type_integer" level="2"/>
             <ConnectionHandle type="type_hex" level="3"/>
         </InternetOpenUrl>
 
-        <InternetReadFile api="11">
+        <InternetReadFile api="0a">
             <Buffer type="type_string" level="2"/>
             <InternetHandle type="type_hex" level="3"/>
         </InternetReadFile>
 
-        <URLDownloadToFile api="12">
+        <URLDownloadToFile api="0b">
             <URL type="type_url" level="2"/>
             <FileName type="type_filepath" level="2"/>
         </URLDownloadToFile>
 
-        <URLDownloadToCacheFile api="13">
+        <URLDownloadToCacheFile api="0c">
             <StackPivoted type="type_string" level="2"/>
             <URL type="type_url" level="2"/>
             <Filename type="type_filepath" level="2"/>
         </URLDownloadToCacheFile>
 
-        <ObtainUserAgentString api="14">
+        <ObtainUserAgentString api="0d">
             <UserAgent type="type_string" level="2"/>
         </ObtainUserAgentString>
 
-        <WSAStartup api="15">
+        <WSAStartup api="0e">
             <VersionRequested type="type_integer" level="2"/>
         </WSAStartup>
 
-        <WSAConnect api="16">
+        <WSAConnect api="0f">
             <port type="type_string" level="2"/>
             <ip type="type_string" level="3"/>
             <socket type="type_string" level="4"/>
         </WSAConnect>
 
-        <WSASend api="17">
+        <WSASend api="10">
             <buffer type="type_string" level="2"/>
             <socket type="type_integer" level="4"/>
         </WSASend>
 
-        <WSARecv api="18">
+        <WSARecv api="11">
             <buffer type="type_hex" level="2"/>
             <socket type="type_integer" level="4"/>
         </WSARecv>
 
-        <connect api="19">
+        <connect api="12">
             <port type="type_integer" level="2"/>
             <ip type="type_string" level="3"/>
             <socket type="type_integer" level="4"/>
         </connect>
 
-        <send api="1a">
+        <send api="13">
             <buffer type="type_hex" level="2"/>
             <socket type="type_integer" level="4"/>
         </send>
 
-        <closesocket api="1b">
+        <closesocket api="14">
             <socket type="type_integer" level="4"/>
         </closesocket>
 
@@ -149,12 +149,12 @@
             <width type="type_integer" level="4"/>
         </CreateWindowEx>
 
-        <FindWindow api="03">
+        <FindWindow api="02">
             <ClassName type="type_string" level="2"/>
             <WindowName type="type_string" level="2"/>
         </FindWindow>
 
-        <FindWindowEx api="05">
+        <FindWindowEx api="03">
             <ClassName type="type_string" level="2"/>
             <WindowName type="type_string" level="2"/>
         </FindWindowEx>
@@ -454,28 +454,28 @@
             <ServiceControlHandle type="type_hex" level="3"/>
         </CreateService>
 
-        <StartService api="03">
+        <StartService api="02">
             <Arguments type="type_string" level="2"/>
             <ServiceHandle type="type_hex" level="3"/>
         </StartService>
 
-        <OpenService api="05">
+        <OpenService api="03">
             <DesiredAccess type="type_integer" level="2"/>
             <ServiceName type="type_string" level="2"/>
             <ServiceControlManager type="type_hex" level="3"/>
         </OpenService>
 
-        <DeleteService api="07">
+        <DeleteService api="04">
             <ServiceHandle type="type_hex" level="3"/>
         </DeleteService>
 
-        <OpenSCManager api="08">
+        <OpenSCManager api="05">
             <MachineName type="type_string" level="2"/>
             <DatabaseName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
         </OpenSCManager>
 
-        <ControlService api="0a">
+        <ControlService api="06">
             <ControlCode type="type_integer" level="2"/>
             <ServiceHandle type="type_hex" level="3"/>
         </ControlService>
@@ -538,12 +538,12 @@
             <Handle type="type_hex" level="3"/>
         </RegCreateKeyEx>
 
-        <NtOpenKey api="04">
+        <NtOpenKey api="03">
             <DesiredAccess type="type_integer" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtOpenKey>
 
-        <NtOpenKeyEx api="05">
+        <NtOpenKeyEx api="04">
             <ObjectAttributes type="type_string" level="2"/>
             <ObjectAttributesName type="type_string" level="2"/>
             <DesiredAccess type="type_integer" level="2"/>
@@ -551,13 +551,13 @@
             <ObjectAttributesHandle type="type_hex" level="3"/>
         </NtOpenKeyEx>
 
-        <RegOpenKeyEx api="06">
+        <RegOpenKeyEx api="05">
             <Registry type="type_hex" level="2"/>
             <SubKey type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegOpenKeyEx>
 
-        <NtSetValueKey api="08">
+        <NtSetValueKey api="06">
             <ValueName type="type_string" level="2"/>
             <FullName type="type_string" level="2"/>
             <Buffer type="type_hex" level="2"/>
@@ -566,91 +566,91 @@
             <KeyHandle type="type_hex" level="3"/>
         </NtSetValueKey>
 
-        <RegSetValueEx api="09">
+        <RegSetValueEx api="07">
             <Buffer type="type_string" level="2"/>
             <Type type="type_integer" level="2"/>
             <ValueName type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegSetValueEx>
 
-        <NtDeleteKey api="0b">
+        <NtDeleteKey api="08">
             <KeyHandle type="type_hex" level="3"/>
         </NtDeleteKey>
 
-        <NtDeleteValueKey api="0c">
+        <NtDeleteValueKey api="09">
             <FullName type="type_string" level="2"/>
             <ValueName type="type_string" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtDeleteValueKey>
 
-        <RegDeleteKey api="0d">
+        <RegDeleteKey api="0a">
             <SubKey type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegDeleteKey>
 
-        <RegDeleteValue api="0f">
+        <RegDeleteValue api="0b">
             <ValueName type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegDeleteValue>
 
-        <NtEnumerateKey api="11">
+        <NtEnumerateKey api="0c">
             <Index type="type_integer" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtEnumerateKey>
 
-        <NtEnumerateValueKey api="12">
+        <NtEnumerateValueKey api="0d">
             <Index type="type_integer" level="2"/>
             <KeyValueInformationClass type="type_integer" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtEnumerateValueKey>
 
-        <RegEnumKey api="13">
+        <RegEnumKey api="0e">
             <Index type="type_integer" level="2"/>
             <Name type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegEnumKey>
 
-        <RegEnumKeyEx api="15">
+        <RegEnumKeyEx api="0f">
             <Class type="type_string" level="2"/>
             <Index type="type_integer" level="2"/>
             <Name type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegEnumKeyEx>
 
-        <RegEnumValue api="17">
+        <RegEnumValue api="11">
             <Index type="type_integer" level="2"/>
             <ValueName type="type_string" level="2"/>
             <Data type="type_hex" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegEnumValue>
 
-        <RegQueryValueEx api="19">
+        <RegQueryValueEx api="12">
             <Type type="type_integer" level="2"/>
             <ValueName type="type_string" level="2"/>
             <Data type="type_string" level="2"/>
             <Handle type="type_hex" level="3"/>
         </RegQueryValueEx>
 
-        <NtQueryKey api="1b">
+        <NtQueryKey api="13">
             <KeyInformationClass type="type_integer" level="2"/>
             <KeyInformation type="type_string" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtQueryKey>
 
-        <NtQueryValueKey api="1c">
+        <NtQueryValueKey api="14">
             <Type type="type_integer" level="2"/>
             <ValueName type="type_string" level="2"/>
             <Data type="type_string" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtQueryValueKey>
 
-        <NtQueryMultipleValueKey api="1d">
+        <NtQueryMultipleValueKey api="15">
             <FullName type="type_string" level="2"/>
             <ValueName type="type_string" level="2"/>
             <KeyHandle type="type_hex" level="3"/>
         </NtQueryMultipleValueKey>
 
-        <RegCloseKey api="1e">
+        <RegCloseKey api="16">
             <Handle type="type_hex" level="3"/>
         </RegCloseKey>
 
@@ -689,47 +689,47 @@
             <ExistedBefore type="type_filepath" level="2"/>
         </CopyFile>
 
-        <CopyFileEx api="07">
+        <CopyFileEx api="06">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
             <CopyFlags type="type_integer" level="2"/>
             <ExistedBefore type="type_filepath" level="2"/>
         </CopyFileEx>
 
-        <DeleteFile api="08">
+        <DeleteFile api="07">
             <FileName type="type_filepath" level="2"/>
         </DeleteFile>
 
-        <FindFirstFileEx api="0a">
+        <FindFirstFileEx api="08">
             <FileName type="type_filepath" level="2"/>
             <FirstCreateTimeLow type="type_hex" level="2"/>
             <FirstCreateTimeHigh type="type_hex" level="2"/>
         </FindFirstFileEx>
 
-        <NtQueryFullAttributesFile api="0c">
+        <NtQueryFullAttributesFile api="09">
             <FileName type="type_filepath" level="2"/>
         </NtQueryFullAttributesFile>
 
-        <NtQueryInformationFile api="0d">
+        <NtQueryInformationFile api="0a">
             <FileInformationClass type="type_integer" level="2"/>
             <HandleName type="type_filepath" level="2"/>
             <FileInformation type="type_hex" level="2"/>
             <FileHandle type="type_hex" level="3"/>
         </NtQueryInformationFile>
 
-        <SHGetFileInfo api="0e">
+        <SHGetFileInfo api="0b">
             <Path type="type_filepath" level="2"/>
             <Flags type="type_integer" level="2"/>
             <DisplayName type="type_string" level="3"/>
             <TypeName type="type_string" level="3"/>
         </SHGetFileInfo>
 
-        <MoveFileWithProgress api="0f">
+        <MoveFileWithProgress api="0c">
             <ExistingFileName type="type_filepath" level="2"/>
             <NewFileName type="type_filepath" level="2"/>
         </MoveFileWithProgress>
 
-        <NtSetInformationFile api="10">
+        <NtSetInformationFile api="0d">
             <FileInformationClass type="type_integer" level="2"/>
             <HandleName type="type_filepath" level="2"/>
             <FileInformation type="type_hex" level="2"/>
