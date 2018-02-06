@@ -317,14 +317,14 @@
 
         <VirtualProtectEx api="0c">
             <Protection type="type_integer" level="2"/>
-            <Size type="type_integer" level="3"/>
+            <Size type="type_integer" level="2"/>
             <ProcessHandle type="type_hex" level="3"/>
             <Address type="type_hex" level="4"/>
         </VirtualProtectEx>
 
         <VirtualFreeEx api="0d">
             <FreeType type="type_integer" level="2"/>
-            <Size type="type_integer" level="3"/>
+            <Size type="type_integer" level="2"/>
             <ProcessHandle type="type_hex" level="3"/>
             <Address type="type_hex" level="4"/>
         </VirtualFreeEx>
@@ -417,8 +417,8 @@
         </LdrGetProcedureAddress>
 
         <LookupPrivilegeValue api="06">
-            <SystemName type="type_string" level="2"/>
-            <PrivilegeName type="type_string" level="2"/>
+            <SystemName type="type_string" level="4"/>
+            <PrivilegeName type="type_string" level="4"/>
         </LookupPrivilegeValue>
 
         <NtClose api="07">
