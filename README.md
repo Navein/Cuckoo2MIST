@@ -15,7 +15,7 @@ A detailed description and technical background on the concept of MIST is provid
 
 - "A Malware Instruction Set for Behavior-Based Analysis." Philipp Trinius, Carsten Willems, Thorsten Holz, and Konrad Rieck Technical report TR-2009-07, University of Mannheim, 2009
 
-This fork converts Cuckoo Sandbox behaviour reports into MIST format.
+This framework converts Cuckoo Sandbox behaviour reports into MIST format.
 
 ## Package Installation
 
@@ -60,12 +60,12 @@ In version 0.3:
 1. More API calls are added.
 2. More MIST levels added.
 3. Order of API calls are retained by using python ordered dictionary.
-4. ELF hash is changed to Murmurhash3, it is installed as dependency, the package is mmh3 2.5.1
+4. ELF hash is changed to Murmurhash3 (mmh3 2.5.1) and it is installed as dependency.
 
 In version 0.4:
 
 1. Update on codebase to allow usage from console after installation.
-2. cuckoo2mist can open and read JSON reports which are compressed with gzip format.
+2. cuckoo2mist can now open and read JSON reports which are compressed with gzip format.
 3. All actions are now logged, for better tracking of issues during operation.
 4. Log file is now saved in user directory.
 5. The matching of API parameters is now case insensitive.
@@ -78,7 +78,7 @@ In version 0.4.1:
 In version 0.4.2:
 
 1. API calls with A (ANSI) or W (Unicode) trailing are generalised into calls without the trailing character.
-2. MIST conversion scipt is speed up by applying multithreading processing using pymp. pymp is added as dependency.
+2. MIST conversion scipt is speed up by applying multithreading processing using pymp, which is added as dependency.
 3. Added URL processing. URL is now split into two parts: domain and parameters. The two parts are placed on the same MIST level.
 
 **Upcoming changes**
@@ -88,4 +88,4 @@ In version 0.4.2:
 3. More filters will be added to filter and refine MIST format.
 4. A module to utilise API handles will be added to support more types of analysis.
 
-Work on this fork is still ongoing. Contributors are welcomed to help improve this fork.
+Work on cuckoo2MIST is still ongoing. Contributors are welcomed to help improve this framework.
